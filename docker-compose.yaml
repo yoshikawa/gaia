@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  api:
+    container_name: fieldsensing-api
+    build:
+      context: .
+      dockerfile: conf/docker/go/Dockerfile
+    volumes:
+      - ./:/go/src/fieldsensing-api
+    ports:
+      - 8080:8080
+    tty:
+      true
