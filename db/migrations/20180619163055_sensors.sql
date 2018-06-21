@@ -13,6 +13,11 @@ CREATE TABLE `sensors` (
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '管理用',
   `deleted` datetime DEFAULT NULL COMMENT '管理用(論理削除)'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='センサ情報を管理するテーブル';
+ALTER TABLE `sensors`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `sensors_ibfk_2` (`individual_id`),
+  ADD KEY `sensors_ibfk_3` (`observable_property_id`),
+  ADD KEY `sensor_device_id` (`sensing_device_id`);
 
 -- +goose Down
 -- SQL section 'Down' is executed when this migration is rolled back

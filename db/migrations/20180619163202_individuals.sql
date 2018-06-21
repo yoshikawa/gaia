@@ -24,6 +24,8 @@ CREATE TABLE `individuals` (
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '管理用',
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '管理用'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='個体情報を管理するテーブル';
+ALTER TABLE `individuals`
+  ADD PRIMARY KEY (`id`);
 
 -- +goose Down
 -- SQL section 'Down' is executed when this migration is rolled back

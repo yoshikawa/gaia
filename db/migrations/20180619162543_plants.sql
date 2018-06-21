@@ -9,6 +9,9 @@ CREATE TABLE plants (
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='観測植物を管理するテーブル';
+ALTER TABLE `plants`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `plant_categorie_id` (`plant_categorie_id`);
 
 -- +goose Down
 -- SQL section 'Down' is executed when this migration is rolled back

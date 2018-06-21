@@ -11,6 +11,8 @@ CREATE TABLE fields (
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '管理用',
   `deleted` datetime DEFAULT NULL COMMENT '論理削除(管理用)'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='圃場情報の管理するテーブル';
+ALTER TABLE `fields`
+  ADD PRIMARY KEY (`id`);
 
 -- +goose Down
 -- SQL section 'Down' is executed when this migration is rolled back

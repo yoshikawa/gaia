@@ -11,6 +11,10 @@ CREATE TABLE `observation_data` (
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '管理用',
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '管理用'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='観測データを保存するテーブル';
+ALTER TABLE `observation_data`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `observation_position_id` (`observation_position_id`),
+  ADD KEY `observation_data_ibfk_2` (`sensor_id`);
 
 -- +goose Down
 -- SQL section 'Down' is executed when this migration is rolled back

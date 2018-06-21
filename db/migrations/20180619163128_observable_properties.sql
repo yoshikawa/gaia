@@ -15,6 +15,9 @@ CREATE TABLE `observable_properties` (
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '管理用',
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '管理用'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='計測項目の情報を保存したテーブル';
+ALTER TABLE `observable_properties`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `observable_property_id` (`observable_property_number`);
 
 -- +goose Down
 -- SQL section 'Down' is executed when this migration is rolled back

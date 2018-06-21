@@ -13,6 +13,10 @@ CREATE TABLE users (
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '管理用',
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '管理用'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='ユーザを管理するテーブル';
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `email` (`email`),
+  ADD KEY `organization_id` (`organization_id`);
 
 -- +goose Down
 -- SQL section 'Down' is executed when this migration is rolled back

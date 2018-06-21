@@ -13,6 +13,10 @@ CREATE TABLE observation_positions (
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '管理用',
   `deleted` datetime DEFAULT NULL COMMENT '論理削除(管理用)'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='観測位置を管理するテーブル';
+ALTER TABLE `observation_positions`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `filed_id` (`field_id`),
+  ADD KEY `plant_id` (`plant_id`);
 
 -- +goose Down
 -- SQL section 'Down' is executed when this migration is rolled back
