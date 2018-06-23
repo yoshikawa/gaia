@@ -11,7 +11,8 @@ CREATE TABLE plants (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='観測植物を管理するテーブル';
 ALTER TABLE `plants`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `plant_categorie_id` (`plant_categorie_id`);
+  ADD KEY `plant_categorie_id` (`plant_categorie_id`),
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 -- +goose Down
 -- SQL section 'Down' is executed when this migration is rolled back

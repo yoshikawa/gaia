@@ -10,7 +10,8 @@ CREATE TABLE organizations (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 ALTER TABLE `organizations`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `name` (`name`);
+  ADD UNIQUE KEY `name` (`name`),
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '管理用';
 
 -- +goose Down
 -- SQL section 'Down' is executed when this migration is rolled back

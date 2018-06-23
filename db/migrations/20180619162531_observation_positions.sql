@@ -16,7 +16,8 @@ CREATE TABLE observation_positions (
 ALTER TABLE `observation_positions`
   ADD PRIMARY KEY (`id`),
   ADD KEY `filed_id` (`field_id`),
-  ADD KEY `plant_id` (`plant_id`);
+  ADD KEY `plant_id` (`plant_id`),
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '管理用';
 
 -- +goose Down
 -- SQL section 'Down' is executed when this migration is rolled back

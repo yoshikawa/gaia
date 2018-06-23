@@ -14,7 +14,8 @@ CREATE TABLE `observation_data` (
 ALTER TABLE `observation_data`
   ADD PRIMARY KEY (`id`),
   ADD KEY `observation_position_id` (`observation_position_id`),
-  ADD KEY `observation_data_ibfk_2` (`sensor_id`);
+  ADD KEY `observation_data_ibfk_2` (`sensor_id`),
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '管理用';
 
 -- +goose Down
 -- SQL section 'Down' is executed when this migration is rolled back
