@@ -18,7 +18,8 @@ CREATE TABLE `gateway_devices` (
 ALTER TABLE `gateway_devices`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `authentication_name` (`authentication_name`),
-  ADD KEY `vendor_id` (`vendor_id`);
+  ADD KEY `vendor_id` (`vendor_id`),
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '管理用';
 
 -- +goose Down
 -- SQL section 'Down' is executed when this migration is rolled back

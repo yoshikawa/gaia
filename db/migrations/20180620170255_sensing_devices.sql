@@ -17,7 +17,8 @@ CREATE TABLE `sensing_devices` (
 ALTER TABLE `sensing_devices`
   ADD PRIMARY KEY (`id`),
   ADD KEY `observation_position_id` (`observation_position_id`) USING BTREE,
-  ADD KEY `sensor_devices_ibfk_2` (`vendor_id`);
+  ADD KEY `sensor_devices_ibfk_2` (`vendor_id`),
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '管理用';
 
 -- +goose Down
 -- SQL section 'Down' is executed when this migration is rolled back

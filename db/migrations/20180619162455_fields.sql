@@ -12,7 +12,8 @@ CREATE TABLE fields (
   `deleted` datetime DEFAULT NULL COMMENT '論理削除(管理用)'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='圃場情報の管理するテーブル';
 ALTER TABLE `fields`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '管理用';
 
 -- +goose Down
 -- SQL section 'Down' is executed when this migration is rolled back

@@ -13,7 +13,8 @@ CREATE TABLE `gateway_device_status` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='機器の状態を管理するテーブル';
 ALTER TABLE `gateway_device_status`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `network_device_id` (`gateway_device_id`);
+  ADD KEY `network_device_id` (`gateway_device_id`),
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '管理用';
 
 -- +goose Down
 -- SQL section 'Down' is executed when this migration is rolled back

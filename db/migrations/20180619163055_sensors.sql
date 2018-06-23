@@ -17,7 +17,8 @@ ALTER TABLE `sensors`
   ADD PRIMARY KEY (`id`),
   ADD KEY `sensors_ibfk_2` (`individual_id`),
   ADD KEY `sensors_ibfk_3` (`observable_property_id`),
-  ADD KEY `sensor_device_id` (`sensing_device_id`);
+  ADD KEY `sensor_device_id` (`sensing_device_id`),
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '管理用';
 
 -- +goose Down
 -- SQL section 'Down' is executed when this migration is rolled back

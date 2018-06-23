@@ -17,7 +17,8 @@ CREATE TABLE `observable_properties` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='計測項目の情報を保存したテーブル';
 ALTER TABLE `observable_properties`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `observable_property_id` (`observable_property_number`);
+  ADD UNIQUE KEY `observable_property_id` (`observable_property_number`),
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '管理用';
 
 -- +goose Down
 -- SQL section 'Down' is executed when this migration is rolled back
