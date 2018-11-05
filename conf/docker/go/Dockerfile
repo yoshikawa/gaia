@@ -6,15 +6,14 @@ LABEL maintainer "yoshikawataiki@gmail.com"
 ENV GOBIN /go/bin
 
 # build directories
-RUN mkdir /app
-RUN mkdir /go/src/app
-ADD . /go/src/app
-WORKDIR /go/src/app
+RUN mkdir /go/src/github.com/Pluslab/fieldsensing-api
+ADD . /go/src/github.com/Pluslab/fieldsensing-api
+WORKDIR /go/src/github.com/Pluslab/fieldsensing-api
 
 # Go dep!
 RUN go get -u github.com/golang/dep/...
 RUN dep ensure
 
 # Build my app
-RUN go build -o /app/main .
-CMD ["/app/main"]
+RUN go build -o /go/src/github.com/Pluslab/fieldsensing-api/main .
+CMD ["/go/src/github.com/Pluslab/fieldsensing-api/main"]
