@@ -5,10 +5,21 @@ services:
     container_name: fieldsensing-api
     build:
       context: .
-      dockerfile: conf/docker/go/Dockerfile
+      dockerfile: ./docker/go/Dockerfile
     volumes:
-      - ./:/go/src/fieldsensing-api
+      - ./:/go/src/github.com/Pluslab/fieldsensing
     ports:
       - 8080:8080
+    tty:
+      true
+  react:
+    container_name: fieldsensing-react
+    build:
+      context: .
+      dockerfile: ./docker/react/Dockerfile
+    volumes:
+      - ./:/go/src/github.com/Pluslab/fieldsensing
+    ports:
+      - 8081:8081
     tty:
       true

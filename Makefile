@@ -26,11 +26,17 @@ docker/clean:
 api/bash:
 	docker-compose exec api bash
 
+react/bash:
+	docker-compose exec react bash
+
+api/init:
+	docker-compose exec api dep ensure
+
 npm/install:
-	docker-compose exec front npm install
+	docker-compose exec react npm install
 
 npm/start:
-	docker-compose exec front npm run watch
+	docker-compose exec react npm run watch
 
 npm/build:
-	docker-compose exec front npm run build
+	docker-compose exec react npm run build
