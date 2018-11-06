@@ -1,3 +1,7 @@
 development:
     driver: mymysql
-    open: field_sensing/root/password
+    open: tcp:127.0.0.1:3306*fieldsensing/root/password
+
+docker:
+    driver: mymysql
+    open: tcp:db:3306*fieldsensing/root/password

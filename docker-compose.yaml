@@ -23,3 +23,14 @@ services:
       - 8081:8081
     tty:
       true
+  db:
+    image: mysql:latest
+    container_name: fieldsensing-mysql
+    volumes:
+      - ./docker/mysql/my.cnf:/etc/mysql/conf.d/my.cnf
+    restart: always
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+    ports:
+      - 3306:3306
