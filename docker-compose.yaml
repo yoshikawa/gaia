@@ -18,7 +18,7 @@ services:
       context: .
       dockerfile: ./docker/react/Dockerfile
     volumes:
-      - ./:/go/src/github.com/Pluslab/fieldsensing
+      - ./:/fieldsensing
     ports:
       - 8081:8081
     tty:

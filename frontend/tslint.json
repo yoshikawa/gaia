@@ -1,0 +1,13 @@
+{
+    "compilerOptions": {
+      "sourceMap": false,
+      "target": "ES5",
+      "module": "commonjs",
+      "moduleResolution": "node",
+      "jsx": "react"
+    },
+    "files": [
+      "./src/main.tsx"
+    ]
+  }
+  
