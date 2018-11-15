@@ -8,6 +8,9 @@ migrate/init:
 migrate/test-init:
 	mysql -u root -h localhost --protocol tcp -e "create database \`$(TESTDBNAME)\`" -p
 
+migrate/up:
+	docker-compose exec api gooose up
+
 docker/build:
 	docker-compose build
 
@@ -29,6 +32,9 @@ api/bash:
 react/bash:
 	docker-compose exec react bash
 
+db/bash:
+	docker-compose exec db bash
+
 api/init:
 	docker-compose exec api dep ensure
 
@@ -40,3 +46,6 @@ npm/start:
 
 npm/build:
 	docker-compose exec react npm run build
+
+run:
+	docker-compose exec api go run main.go

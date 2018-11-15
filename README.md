@@ -4,7 +4,7 @@
 
 ## Description(詳細)
 
-圃場管理システムをマイクロサービス化
+Multi-platform field sensing service
 
 ## Requirements(開発環境)
 
