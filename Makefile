@@ -9,7 +9,10 @@ migrate/test-init:
 	mysql -u root -h localhost --protocol tcp -e "create database \`$(TESTDBNAME)\`" -p
 
 migrate/up:
-	docker-compose exec api gooose up
+	docker-compose exec api goose up
+
+migrate/down:
+	docker-compose exec api goose down
 
 docker/build:
 	docker-compose build
