@@ -4,7 +4,7 @@
 
 CREATE TABLE fields (
   `id` int(11) UNSIGNED NOT NULL COMMENT '管理用',
-  `groups` varchar(255) DEFAULT NULL COMMENT 'グループ番号',
+  `organization_id` int(11) UNSIGNED NOT NULL COMMENT 'グループ番号',
   `name` varchar(255) NOT NULL COMMENT '登録名',
   `area` geometry NOT NULL COMMENT '圃場範囲',
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '管理用',
@@ -13,6 +13,7 @@ CREATE TABLE fields (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='圃場情報の管理するテーブル';
 ALTER TABLE `fields`
   ADD PRIMARY KEY (`id`),
+  ADD KEY `organization_id` (`organization_id`),
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '管理用';
 
 -- +goose Down
