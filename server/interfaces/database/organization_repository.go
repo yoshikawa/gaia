@@ -1,6 +1,10 @@
 package database
 
-import "github.com/Pluslab/fieldsensing/server/domain"
+import (
+	"time"
+
+	"github.com/Pluslab/fieldsensing/server/domain"
+)
 
 // OrganizationRepository is organization's repository
 type OrganizationRepository struct {
@@ -10,7 +14,7 @@ type OrganizationRepository struct {
 // Store insert values into organization table
 func (repo *OrganizationRepository) Store(o domain.Organization) (id int64, err error) {
 	result, err := repo.Execute(
-		"INSERT INTO organization (name) VALUES (?)", o.Name,
+		"INSERT INTO organizations (name , created_at) VALUES (?, ?)", o.Name, time.Now(),
 	)
 	if err != nil {
 		return
@@ -24,8 +28,8 @@ func (repo *OrganizationRepository) Store(o domain.Organization) (id int64, err 
 }
 
 // FindByID find the organization by id
-func (repo *OrganizationRepository) FindByID(identifier int) (organization domain.Organization, err error) {
-	row, err := repo.Query("SELECT id, name FROM organization WHERE id = ?", identifier)
+func (repo *OrganizationRepository) FindByID(identifier int64) (organization domain.Organization, err error) {
+	row, err := repo.Query("SELECT id, name FROM organizations WHERE id = ?", identifier)
 	defer row.Close()
 	if err != nil {
 		return
