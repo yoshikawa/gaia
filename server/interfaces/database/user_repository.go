@@ -14,7 +14,7 @@ type UserRepository struct {
 // Store insert values into user table
 func (repo *UserRepository) Store(u domain.User) (id int64, err error) {
 	result, err := repo.Execute(
-		"INSERT INTO users (organization_id), (name), (email), (password), (country), (administrator) VALUES (?), (?), (?), (?), (?), (?)", u.OrganizationID, u.Name, u.Email, u.Password, u.Country, u.Administrator,
+		"INSERT INTO users (organization_id, name, email, password, country, administrator) VALUES (?, ?, ?, ?, ?, ?)", u.OrganizationID, u.Name, u.Email, u.Password, u.Country, u.Administrator,
 	)
 	if err != nil {
 		return
