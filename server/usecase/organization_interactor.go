@@ -11,8 +11,12 @@ type OrganizationInteractor struct {
 
 // Add is to add organization
 // this is Gateway. input port.
-func (interactor *OrganizationInteractor) Add(organization domain.Organization) (err error) {
-	_, err = interactor.OrganizationRepository.Store(organization)
+func (interactor *OrganizationInteractor) Add(o domain.Organization) (organization domain.Organization, err error) {
+	identifier, err := interactor.OrganizationRepository.Store(o)
+	if err != nil {
+		return
+	}
+	organization, err = interactor.OrganizationRepository.FindByID(identifier)
 	return
 }
 

@@ -26,9 +26,9 @@ func NewOrganizationController(SQLHandler database.SQLHandler) *OrganizationCont
 
 // Create is to create the organization
 func (controller *OrganizationController) Create(c Context) {
-	organization := domain.Organization{}
-	c.Bind(&organization)
-	err := controller.Interactor.Add(organization)
+	o := domain.Organization{}
+	c.Bind(&o)
+	organization, err := controller.Interactor.Add(o)
 	if err != nil {
 		c.JSON(500, err)
 		return
