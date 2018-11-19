@@ -52,3 +52,6 @@ npm/build:
 
 run:
 	docker-compose exec api go run main.go
+
+doc:
+	godoc -http=:6060
