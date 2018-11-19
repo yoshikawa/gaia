@@ -14,7 +14,7 @@ type OrganizationRepository struct {
 // Store insert values into organization table
 func (repo *OrganizationRepository) Store(o domain.Organization) (id int64, err error) {
 	result, err := repo.Execute(
-		"INSERT INTO organizations (name , created_at) VALUES (?, ?)", o.Name, time.Now(),
+		"INSERT INTO organizations (name) VALUES (?)", o.Name,
 	)
 	if err != nil {
 		return
@@ -29,25 +29,29 @@ func (repo *OrganizationRepository) Store(o domain.Organization) (id int64, err 
 
 // FindByID find the organization by id
 func (repo *OrganizationRepository) FindByID(identifier int64) (organization domain.Organization, err error) {
-	row, err := repo.Query("SELECT id, name FROM organizations WHERE id = ?", identifier)
+	row, err := repo.Query("SELECT * FROM organizations WHERE id = ?", identifier)
 	defer row.Close()
 	if err != nil {
 		return
 	}
 	var id int64
 	var name string
+	var createdAt time.Time
+	var updatedAt time.Time
 	row.Next()
-	if err = row.Scan(&id, &name); err != nil {
+	if err = row.Scan(&id, &name, &createdAt, &updatedAt); err != nil {
 		return
 	}
 	organization.ID = id
 	organization.Name = name
+	organization.CreatedAt = createdAt
+	organization.UpdatedAt = updatedAt
 	return
 }
 
 // FindAll find all organizations
 func (repo *OrganizationRepository) FindAll() (organizations domain.Organizations, err error) {
-	rows, err := repo.Query("SELECT id, name FROM organizations")
+	rows, err := repo.Query("SELECT * FROM organizations")
 	defer rows.Close()
 	if err != nil {
 		return
@@ -55,12 +59,16 @@ func (repo *OrganizationRepository) FindAll() (organizations domain.Organization
 	for rows.Next() {
 		var id int64
 		var name string
-		if err := rows.Scan(&id, &name); err != nil {
+		var createdAt time.Time
+		var updatedAt time.Time
+		if err := rows.Scan(&id, &name, &createdAt, &updatedAt); err != nil {
 			continue
 		}
 		organization := domain.Organization{
-			ID:   id,
-			Name: name,
+			ID:        id,
+			Name:      name,
+			CreatedAt: createdAt,
+			UpdatedAt: updatedAt,
 		}
 		organizations = append(organizations, organization)
 	}
