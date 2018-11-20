@@ -16,7 +16,7 @@ module.exports = {
     extensions: [
       '.ts',  // for ts-loader
       '.tsx',  // for ts-loader
-      '.js'   // for style-loader
+      '.js'
     ]
   },
   module: {
@@ -28,10 +28,8 @@ module.exports = {
       {
         test: /\.scss$/,
         use: [
-	          MiniCssExtractPlugin.loader,
-            //fallback: 'style-loader',
+	    MiniCssExtractPlugin.loader,
             'css-loader',
-            //'postcss-loader',
             'sass-loader'
         ]
       },
