@@ -1,0 +1,16 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/golang:latest
+      - image: circleci/mysql
+          enviroment:
+            MYSQL_USER: root
+            MYSQL_DB: fieldsensing
+
+    working_directory: /go/src/github.com/Pluslab/fieldsensing
+    steps:
+      - checkout
+
+      - run: go get -v -t -d ./...
+      - run: go test -v ./...
