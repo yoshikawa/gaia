@@ -1,0 +1,18 @@
+sudo: required
+
+services:
+  - docker
+
+before_install:
+  - make docker/start
+
+install:
+
+before_script:
+
+script:
+  - docker-compose exec api go test -v ./...
+
+after_script:
+
+notifications:
