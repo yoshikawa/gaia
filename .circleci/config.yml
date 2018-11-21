@@ -5,8 +5,10 @@ jobs:
       - image: circleci/golang:latest
 
       - image: circleci/mysql:8
-          environment:
-            MYSQL_ROOT_PASSWORD: password
+        command: mysqld --default_authentication_plugin=mysql_native_password --character-set-server=utf8mb4 --collation-server=utf8mb4_general_ci
+        environment:
+          MYSQL_DATABASE: fieldsensing
+          MYSQL_ROOT_PASSWORD: password
 
     working_directory: /go/src/github.com/Pluslab/fieldsensing
     steps:
