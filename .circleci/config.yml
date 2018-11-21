@@ -5,9 +5,9 @@ jobs:
       - image: circleci/golang:latest
 
       - image: circleci/mysql
-          enviroment:
-            MYSQL_USER: 'root'
-            MYSQL_DB: 'fieldsensing'
+          environment:
+            MYSQL_USER: root
+            MYSQL_DB: fieldsensing
 
     working_directory: /go/src/github.com/Pluslab/fieldsensing
     steps:
