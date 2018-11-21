@@ -4,10 +4,9 @@ jobs:
     docker:
       - image: circleci/golang:latest
 
-      - image: circleci/mysql
+      - image: circleci/mysql:8
           environment:
-            MYSQL_USER: root
-            MYSQL_DB: fieldsensing
+            MYSQL_ROOT_PASSWORD: password
 
     working_directory: /go/src/github.com/Pluslab/fieldsensing
     steps:
