@@ -12,3 +12,6 @@ type Field struct {
 	UpdatedAt      time.Time `json:"updated_at" db:"updated_at"`
 	Deleted        bool      `json:"deleted" db:"deleted"`
 }
+
+// Fields Model
+type Fields []Field

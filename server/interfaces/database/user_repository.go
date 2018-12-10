@@ -4,6 +4,7 @@ import (
 	"time"
 
 	"github.com/Pluslab/fieldsensing/server/domain"
+	"golang.org/x/crypto/bcrypt"
 )
 
 // UserRepository model
@@ -13,6 +14,11 @@ type UserRepository struct {
 
 // Store insert values into user table
 func (repo *UserRepository) Store(u domain.User) (id int64, err error) {
+	password, err := bcrypt.GenerateFromPassword([]byte(u.Password), bcrypt.DefaultCost)
+	if err != nil {
+		return
+	}
+	u.Password = string(password)
 	result, err := repo.Execute(
 		"INSERT INTO users (organization_id, name, email, password, country, administrator) VALUES (?, ?, ?, ?, ?, ?)", u.OrganizationID, u.Name, u.Email, u.Password, u.Country, u.Administrator,
 	)

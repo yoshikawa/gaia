@@ -10,9 +10,9 @@ Multi-platform field sensing system
 
 |言語/FW|Version|
 |:--|--:|
-|go|1.10.3|
-|docker|18.03.1|
-|docker-compose|1.21.1|
+|go|1.11.2|
+|docker|18.09.0|
+|docker-compose|1.23.2|
 |react|16.6.3|
 |mysql|8.0.12|
 
@@ -42,4 +42,4 @@ The architecture of the project follows the principles of Clean Architecture.
 
 ## Author
 
-[YoshikawaTaiki](https://github.com/YoshikawaTaiki)
+[Yoshikawa Taiki](https://github.com/yoshikawataiki)
