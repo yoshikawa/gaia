@@ -1,5 +1,7 @@
 # FieldSensing
 
+[![CircleCI](https://circleci.com/gh/Pluslab/fieldsensing.svg?style=svg&circle-token=f7d7b8e52887580b128e416f39b29974cb64c503)](https://circleci.com/gh/Pluslab/fieldsensing)
+
 フィールドセンシング
 
 ## Description(詳細)
