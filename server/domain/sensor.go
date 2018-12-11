@@ -14,3 +14,6 @@ type Sensor struct {
 	UpdatedAt            time.Time `json:"updated_at" db:"updated_at"`
 	Deleted              time.Time `json:"deleted" db:"deleted"`
 }
+
+// Sensors Model
+type Sensors []Sensor

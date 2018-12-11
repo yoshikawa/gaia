@@ -14,3 +14,6 @@ type ObservationPosition struct {
 	UpdatedAt time.Time `json:"updated_at" db:"updated_at"`
 	Deleted   time.Time `json:"deleted" db:"deleted"`
 }
+
+// ObservationPositions Model
+type ObservationPositions []ObservationPosition

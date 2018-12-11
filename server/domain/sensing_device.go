@@ -15,3 +15,6 @@ type SensingDevice struct {
 	UpdatedAt             time.Time `json:"updated_at" db:"updated_at"`
 	Deleted               time.Time `json:"deleted" db:"deleted"`
 }
+
+// SensingDevices Model
+type SensingDevices []SensingDevices
