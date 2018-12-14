@@ -1,4 +1,4 @@
 FROM node:latest
 
-ADD . fieldsensing
-WORKDIR /fieldsensing/frontend
+ADD ./frontend frontend
+WORKDIR /frontend
