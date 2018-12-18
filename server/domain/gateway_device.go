@@ -18,4 +18,4 @@ type GatewayDevice struct {
 }
 
 // GatewayDevices Model
-type GatewayDevices []GatewayDevices
+type GatewayDevices []GatewayDevice

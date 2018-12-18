@@ -68,7 +68,7 @@ func (repo *GatewayDeviceRepository) FindByID(identifier int64) (gatewayDevice d
 
 // FindAll find all gateway devicess
 func (repo *GatewayDeviceRepository) FindAll() (gatewayDevices domain.GatewayDevices, err error) {
-	rows, err := repo.Query("SELECT id, organization_id, name, area, created_at, updated_at, deleted FROM gateway_devices")
+	rows, err := repo.Query("SELECT id, vendor_id, device_type, serial_number, point, name, transmission_distance, authentication_name, password FROM gateway_devices")
 	defer rows.Close()
 	if err != nil {
 		return
