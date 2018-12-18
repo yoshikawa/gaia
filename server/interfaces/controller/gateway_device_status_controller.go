@@ -38,7 +38,7 @@ func (controller *GatewayDeviceStatusController) Create(c Context) {
 
 // Index is to index the fields
 func (controller *GatewayDeviceStatusController) Index(c Context) {
-	fields, err := controller.Interactor.GatewayDeviceStatuss()
+	fields, err := controller.Interactor.GatewayDeviceStatuses()
 	if err != nil {
 		c.JSON(500, err)
 		return
