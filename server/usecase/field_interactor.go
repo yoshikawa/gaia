@@ -18,8 +18,8 @@ func (interactor *FieldInteractor) Add(f domain.Field) (field domain.Field, err 
 }
 
 // Fields is to find all fields
-func (interactor *FieldInteractor) Fields() (field domain.Fields, err error) {
-	field, err = interactor.FieldRepository.FindAll()
+func (interactor *FieldInteractor) Fields() (fields domain.Fields, err error) {
+	fields, err = interactor.FieldRepository.FindAll()
 	return
 }
 
