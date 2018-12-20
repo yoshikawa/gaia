@@ -11,10 +11,36 @@ type ObservablePropertyRepository struct {
 	SQLHandler
 }
 
-// Store insert values into field table
-func (repo *ObservablePropertyRepository) Store(f domain.ObservableProperty) (id int64, err error) {
+// Store insert values into observable property table
+func (repo *ObservablePropertyRepository) Store(observableProperty domain.ObservableProperty) (id int64, err error) {
 	result, err := repo.Execute(
-		"INSERT INTO fields (organization_id, name, area) VALUES (?, ?, ?)", f.OrganizationID, f.Name, f.Area,
+		`INSERT INTO observable_properties (
+			observable_property_number,
+			system,
+			classification,
+			classfication_en,
+			observation_property,
+			observation_property_en,
+			unit_of_measure,
+			display_unit
+		) VALUES (
+			?,
+			?,
+			?,
+			?,
+			?,
+			?,
+			?,
+			?
+		)`,
+		observableProperty.ObservablePropertyNumber,
+		observableProperty.System,
+		observableProperty.Classification,
+		observableProperty.ClassificationEn,
+		observableProperty.ObservationProperty,
+		observableProperty.ObservationPropertyEn,
+		observableProperty.UnitOfMeasure,
+		observableProperty.DisplayUnit,
 	)
 	if err != nil {
 		return
@@ -27,62 +53,101 @@ func (repo *ObservablePropertyRepository) Store(f domain.ObservableProperty) (id
 	return
 }
 
-// FindByID find the field by id
-func (repo *ObservablePropertyRepository) FindByID(identifier int64) (field domain.ObservableProperty, err error) {
-	row, err := repo.Query("SELECT id, organization_id, name, area, created_at, updated_at, deleted FROM fields WHERE id = ?", identifier)
+// FindByID find the observable property by id
+func (repo *ObservablePropertyRepository) FindByID(identifier int64) (observableProperty domain.ObservableProperty, err error) {
+	row, err := repo.Query("SELECT * FROM observable_properties WHERE id = ?", identifier)
 	defer row.Close()
 	if err != nil {
 		return
 	}
 	var id int64
-	var organizationID int64
-	var name string
-	var area []float64
+	var observablePropertyNumber string
+	var system string
+	var classification string
+	var classificationEn string
+	var observationProperty string
+	var observationPropertyEn string
+	var unitOfMeasure string
+	var displayUnit string
 	var createdAt time.Time
 	var updatedAt time.Time
-	var deleted bool
 	row.Next()
-	if err = row.Scan(&id, &organizationID, &name, &area, &createdAt, &updatedAt, &deleted); err != nil {
+	if err = row.Scan(
+		&id,
+		&observablePropertyNumber,
+		&system,
+		&classification,
+		&classificationEn,
+		&observationProperty,
+		&observationPropertyEn,
+		&unitOfMeasure,
+		&displayUnit,
+		&createdAt,
+		&updatedAt,
+	); err != nil {
 		return
 	}
-	field.ID = id
-	field.OrganizationID = organizationID
-	field.Name = name
-	field.Area = area
-	field.CreatedAt = createdAt
-	field.UpdatedAt = updatedAt
-	field.Deleted = deleted
+	observableProperty.ID = id
+	observableProperty.ObservablePropertyNumber = observablePropertyNumber
+	observableProperty.System = system
+	observableProperty.Classification = classification
+	observableProperty.ClassificationEn = classificationEn
+	observableProperty.ObservationProperty = observationProperty
+	observableProperty.ObservationPropertyEn = observationPropertyEn
+	observableProperty.UnitOfMeasure = unitOfMeasure
+	observableProperty.CreatedAt = createdAt
+	observableProperty.UpdatedAt = updatedAt
 	return
 }
 
-// FindAll find all fields
-func (repo *ObservablePropertyRepository) FindAll() (fields domain.ObservableProperties, err error) {
-	rows, err := repo.Query("SELECT id, organization_id, name, area, created_at, updated_at, deleted FROM fileds")
+// FindAll find all observable properties
+func (repo *ObservablePropertyRepository) FindAll() (observableProperties domain.ObservableProperties, err error) {
+	rows, err := repo.Query("SELECT * FROM observable_properties")
 	defer rows.Close()
 	if err != nil {
 		return
 	}
 	for rows.Next() {
 		var id int64
-		var organizationID int64
-		var name string
-		var area []float64
+		var observablePropertyNumber string
+		var system string
+		var classification string
+		var classificationEn string
+		var observationProperty string
+		var observationPropertyEn string
+		var unitOfMeasure string
+		var displayUnit string
 		var createdAt time.Time
 		var updatedAt time.Time
-		var deleted bool
-		if err := rows.Scan(&id, &organizationID, &name, &area, &createdAt, &updatedAt, &deleted); err != nil {
-			continue
+		if err = rows.Scan(
+			&id,
+			&observablePropertyNumber,
+			&system,
+			&classification,
+			&classificationEn,
+			&observationProperty,
+			&observationPropertyEn,
+			&unitOfMeasure,
+			&displayUnit,
+			&createdAt,
+			&updatedAt,
+		); err != nil {
+			return
 		}
-		field := domain.ObservableProperty{
-			ID:             id,
-			OrganizationID: organizationID,
-			Name:           name,
-			Area:           area,
-			CreatedAt:      createdAt,
-			UpdatedAt:      updatedAt,
-			Deleted:        deleted,
+		observableProperty := domain.ObservableProperty{
+			ID:                       id,
+			ObservablePropertyNumber: observablePropertyNumber,
+			System:                   system,
+			Classification:           classification,
+			ClassificationEn:         classificationEn,
+			ObservationProperty:      observationProperty,
+			ObservationPropertyEn:    observationPropertyEn,
+			UnitOfMeasure:            unitOfMeasure,
+			DisplayUnit:              displayUnit,
+			CreatedAt:                createdAt,
+			UpdatedAt:                updatedAt,
 		}
-		fields = append(fields, field)
+		observableProperties = append(observableProperties, observableProperty)
 	}
 	return
 }
