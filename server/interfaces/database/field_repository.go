@@ -57,7 +57,7 @@ func (repo *FieldRepository) FindByID(identifier int64) (field domain.Field, err
 
 // FindAll find all fields
 func (repo *FieldRepository) FindAll() (fields domain.Fields, err error) {
-	rows, err := repo.Query("SELECT id, organization_id, name, area, created_at, updated_at, deleted FROM fileds")
+	rows, err := repo.Query("SELECT id, organization_id, name, area, created_at, updated_at, deleted FROM fields")
 	defer rows.Close()
 	if err != nil {
 		return

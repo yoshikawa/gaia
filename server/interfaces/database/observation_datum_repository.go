@@ -6,13 +6,13 @@ import (
 	"github.com/Pluslab/fieldsensing/server/domain"
 )
 
-// SensorRepository model
-type SensorRepository struct {
+// ObservationDatumRepository model
+type ObservationDatumRepository struct {
 	SQLHandler
 }
 
 // Store insert values into field table
-func (repo *SensorRepository) Store(f domain.Sensor) (id int64, err error) {
+func (repo *ObservationDatumRepository) Store(f domain.ObservationDatum) (id int64, err error) {
 	result, err := repo.Execute(
 		"INSERT INTO fields (organization_id, name, area) VALUES (?, ?, ?)", f.OrganizationID, f.Name, f.Area,
 	)
@@ -28,7 +28,7 @@ func (repo *SensorRepository) Store(f domain.Sensor) (id int64, err error) {
 }
 
 // FindByID find the field by id
-func (repo *SensorRepository) FindByID(identifier int64) (field domain.Sensor, err error) {
+func (repo *ObservationDatumRepository) FindByID(identifier int64) (field domain.ObservationDatum, err error) {
 	row, err := repo.Query("SELECT id, organization_id, name, area, created_at, updated_at, deleted FROM fields WHERE id = ?", identifier)
 	defer row.Close()
 	if err != nil {
@@ -56,7 +56,7 @@ func (repo *SensorRepository) FindByID(identifier int64) (field domain.Sensor, e
 }
 
 // FindAll find all fields
-func (repo *SensorRepository) FindAll() (fields domain.Sensors, err error) {
+func (repo *ObservationDatumRepository) FindAll() (fields domain.ObservationData, err error) {
 	rows, err := repo.Query("SELECT id, organization_id, name, area, created_at, updated_at, deleted FROM fileds")
 	defer rows.Close()
 	if err != nil {
@@ -73,7 +73,7 @@ func (repo *SensorRepository) FindAll() (fields domain.Sensors, err error) {
 		if err := rows.Scan(&id, &organizationID, &name, &area, &createdAt, &updatedAt, &deleted); err != nil {
 			continue
 		}
-		field := domain.Sensor{
+		field := domain.ObservationDatum{
 			ID:             id,
 			OrganizationID: organizationID,
 			Name:           name,
