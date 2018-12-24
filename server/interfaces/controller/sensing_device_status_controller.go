@@ -8,16 +8,16 @@ import (
 	"github.com/Pluslab/fieldsensing/server/usecase"
 )
 
-// GatewayDeviceController model
-type GatewayDeviceController struct {
-	Interactor usecase.GatewayDeviceInteractor
+// SensingDeviceStatusController model
+type SensingDeviceStatusController struct {
+	Interactor usecase.SensingDeviceStatusInteractor
 }
 
-// NewGatewayDeviceController return the GatewayDeviceController
-func NewGatewayDeviceController(SQLHandler database.SQLHandler) *GatewayDeviceController {
-	return &GatewayDeviceController{
-		Interactor: usecase.GatewayDeviceInteractor{
-			GatewayDeviceRepository: &database.GatewayDeviceRepository{
+// NewSensingDeviceStatusController return the SensingDeviceStatusController
+func NewSensingDeviceStatusController(SQLHandler database.SQLHandler) *SensingDeviceStatusController {
+	return &SensingDeviceStatusController{
+		Interactor: usecase.SensingDeviceStatusInteractor{
+			SensingDeviceStatusRepository: &database.SensingDeviceStatusRepository{
 				SQLHandler: SQLHandler,
 			},
 		},
@@ -25,8 +25,8 @@ func NewGatewayDeviceController(SQLHandler database.SQLHandler) *GatewayDeviceCo
 }
 
 // Create is to create the field
-func (controller *GatewayDeviceController) Create(c Context) {
-	f := domain.GatewayDevice{}
+func (controller *SensingDeviceStatusController) Create(c Context) {
+	f := domain.SensingDeviceStatus{}
 	c.Bind(&f)
 	field, err := controller.Interactor.Add(f)
 	if err != nil {
@@ -37,8 +37,8 @@ func (controller *GatewayDeviceController) Create(c Context) {
 }
 
 // Index is to index the fields
-func (controller *GatewayDeviceController) Index(c Context) {
-	fields, err := controller.Interactor.GatewayDevices()
+func (controller *SensingDeviceStatusController) Index(c Context) {
+	fields, err := controller.Interactor.SensingDeviceStatuses()
 	if err != nil {
 		c.JSON(500, err)
 		return
@@ -47,10 +47,10 @@ func (controller *GatewayDeviceController) Index(c Context) {
 }
 
 // Show is to show the field
-func (controller *GatewayDeviceController) Show(c Context) {
+func (controller *SensingDeviceStatusController) Show(c Context) {
 	id, _ := strconv.Atoi(c.Param("id"))
 	id64 := int64(id)
-	field, err := controller.Interactor.GatewayDeviceByID(id64)
+	field, err := controller.Interactor.SensingDeviceStatusByID(id64)
 	if err != nil {
 		c.JSON(500, err)
 		return

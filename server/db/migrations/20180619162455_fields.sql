@@ -9,7 +9,7 @@ CREATE TABLE fields (
   `area` geometry NOT NULL COMMENT '圃場範囲',
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '管理用',
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '管理用',
-  `deleted` datetime DEFAULT NULL COMMENT '論理削除(管理用)'
+  `deleted` boolean DEFAULT 0 COMMENT '論理削除(管理用)'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='圃場情報の管理するテーブル';
 ALTER TABLE `fields`
   ADD PRIMARY KEY (`id`),

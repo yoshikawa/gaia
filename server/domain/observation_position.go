@@ -12,7 +12,7 @@ type ObservationPosition struct {
 	Altitude  float64   `json:"altitude" db:"altitude"`
 	CreatedAt time.Time `json:"created_at" db:"created_at"`
 	UpdatedAt time.Time `json:"updated_at" db:"updated_at"`
-	Deleted   time.Time `json:"deleted" db:"deleted"`
+	Deleted   bool      `json:"deleted" db:"deleted"`
 }
 
 // ObservationPositions Model

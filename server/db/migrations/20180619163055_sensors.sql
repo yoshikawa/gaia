@@ -11,7 +11,7 @@ CREATE TABLE `sensors` (
   `observation_condition` double(4,1) NOT NULL COMMENT '計測条件(m)',
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '管理用',
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '管理用',
-  `deleted` datetime DEFAULT NULL COMMENT '管理用(論理削除)'
+  `deleted` boolean DEFAULT 0 COMMENT '管理用(論理削除)'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='センサ情報を管理するテーブル';
 ALTER TABLE `sensors`
   ADD PRIMARY KEY (`id`),

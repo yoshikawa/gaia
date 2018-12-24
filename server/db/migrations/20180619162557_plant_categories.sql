@@ -16,7 +16,7 @@ CREATE TABLE `plant_categories` (
 ALTER TABLE `plant_categories`
   ADD PRIMARY KEY (`id`),
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
-  
+
 -- +goose Down
 -- SQL section 'Down' is executed when this migration is rolled back
 

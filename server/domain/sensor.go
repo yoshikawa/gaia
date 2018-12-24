@@ -12,7 +12,7 @@ type Sensor struct {
 	ObservationCondition float64   `json:"observation_condition" db:"observation_condition"`
 	CreatedAt            time.Time `json:"created_at" db:"created_at"`
 	UpdatedAt            time.Time `json:"updated_at" db:"updated_at"`
-	Deleted              time.Time `json:"deleted" db:"deleted"`
+	Deleted              bool      `json:"deleted" db:"deleted"`
 }
 
 // Sensors Model
