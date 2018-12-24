@@ -12,9 +12,29 @@ type PlantCategoryRepository struct {
 }
 
 // Store insert values into field table
-func (repo *PlantCategoryRepository) Store(f domain.PlantCategory) (id int64, err error) {
+func (repo *PlantCategoryRepository) Store(plantCategory domain.PlantCategory) (id int64, err error) {
 	result, err := repo.Execute(
-		"INSERT INTO fields (organization_id, name, area) VALUES (?, ?, ?)", f.OrganizationID, f.Name, f.Area,
+		`INSERT INTO plant_categories (
+			large_classification,
+			middle_classification,
+			small_classification,
+			thesaurus,
+			harvest_site,
+			attribute_item
+		) VALUES (
+			?,
+			?,
+			?,
+			?,
+			?,
+			?
+		)`,
+		plantCategory.LargeClassification,
+		plantCategory.MiddleClassification,
+		plantCategory.SmallClassification,
+		plantCategory.Thesaurus,
+		plantCategory.HarvestSite,
+		plantCategory.AttributeItem,
 	)
 	if err != nil {
 		return
@@ -28,35 +48,39 @@ func (repo *PlantCategoryRepository) Store(f domain.PlantCategory) (id int64, er
 }
 
 // FindByID find the field by id
-func (repo *PlantCategoryRepository) FindByID(identifier int64) (field domain.PlantCategory, err error) {
-	row, err := repo.Query("SELECT id, organization_id, name, area, created_at, updated_at, deleted FROM fields WHERE id = ?", identifier)
+func (repo *PlantCategoryRepository) FindByID(identifier int64) (plantCategory domain.PlantCategory, err error) {
+	row, err := repo.Query("SELECT * FROM plant_categories WHERE id = ?", identifier)
 	defer row.Close()
 	if err != nil {
 		return
 	}
 	var id int64
-	var organizationID int64
-	var name string
-	var area []float64
+	var largeClassification string
+	var middleClassification string
+	var smallClassification string
+	var thesaurus string
+	var harvestSite string
+	var attributeItem string
 	var createdAt time.Time
 	var updatedAt time.Time
-	var deleted bool
 	row.Next()
-	if err = row.Scan(&id, &organizationID, &name, &area, &createdAt, &updatedAt, &deleted); err != nil {
+	if err = row.Scan(&id, &largeClassification, &middleClassification, &smallClassification, &thesaurus, &harvestSite, &attributeItem, &createdAt, &updatedAt); err != nil {
 		return
 	}
-	field.ID = id
-	field.OrganizationID = organizationID
-	field.Name = name
-	field.Area = area
-	field.CreatedAt = createdAt
-	field.UpdatedAt = updatedAt
-	field.Deleted = deleted
+	plantCategory.ID = id
+	plantCategory.LargeClassification = largeClassification
+	plantCategory.MiddleClassification = middleClassification
+	plantCategory.SmallClassification = smallClassification
+	plantCategory.Thesaurus = thesaurus
+	plantCategory.HarvestSite = harvestSite
+	plantCategory.AttributeItem = attributeItem
+	plantCategory.CreatedAt = createdAt
+	plantCategory.UpdatedAt = updatedAt
 	return
 }
 
 // FindAll find all fields
-func (repo *PlantCategoryRepository) FindAll() (fields domain.PlantCategories, err error) {
+func (repo *PlantCategoryRepository) FindAll() (plantCategories domain.PlantCategories, err error) {
 	rows, err := repo.Query("SELECT id, organization_id, name, area, created_at, updated_at, deleted FROM fileds")
 	defer rows.Close()
 	if err != nil {
@@ -64,25 +88,29 @@ func (repo *PlantCategoryRepository) FindAll() (fields domain.PlantCategories, e
 	}
 	for rows.Next() {
 		var id int64
-		var organizationID int64
-		var name string
-		var area []float64
+		var largeClassification string
+		var middleClassification string
+		var smallClassification string
+		var thesaurus string
+		var harvestSite string
+		var attributeItem string
 		var createdAt time.Time
 		var updatedAt time.Time
-		var deleted bool
-		if err := rows.Scan(&id, &organizationID, &name, &area, &createdAt, &updatedAt, &deleted); err != nil {
+		if err := rows.Scan(&id, &largeClassification, &middleClassification, &smallClassification, &thesaurus, &harvestSite, &attributeItem, &createdAt, &updatedAt); err != nil {
 			continue
 		}
-		field := domain.PlantCategory{
-			ID:             id,
-			OrganizationID: organizationID,
-			Name:           name,
-			Area:           area,
-			CreatedAt:      createdAt,
-			UpdatedAt:      updatedAt,
-			Deleted:        deleted,
+		plantCategory := domain.PlantCategory{
+			ID:                   id,
+			LargeClassification:  largeClassification,
+			MiddleClassification: middleClassification,
+			SmallClassification:  smallClassification,
+			Thesaurus:            thesaurus,
+			HarvestSite:          harvestSite,
+			AttributeItem:        attributeItem,
+			CreatedAt:            createdAt,
+			UpdatedAt:            updatedAt,
 		}
-		fields = append(fields, field)
+		plantCategories = append(plantCategories, plantCategory)
 	}
 	return
 }

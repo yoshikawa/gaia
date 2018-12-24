@@ -11,10 +11,26 @@ type ObservationPositionRepository struct {
 	SQLHandler
 }
 
-// Store insert values into field table
-func (repo *ObservationPositionRepository) Store(f domain.ObservationPosition) (id int64, err error) {
+// Store insert values into observation position table
+func (repo *ObservationPositionRepository) Store(op domain.ObservationPosition) (id int64, err error) {
 	result, err := repo.Execute(
-		"INSERT INTO fields (organization_id, name, area) VALUES (?, ?, ?)", f.OrganizationID, f.Name, f.Area,
+		`INSERT INTO observation_positions (
+			field_id,
+			plant_id,
+			name,
+			point,
+			altitude
+		) VALUES (
+			?,
+			?,
+			?,
+			?,
+			?)`,
+		op.FieldID,
+		op.PlantID,
+		op.Name,
+		op.Point,
+		op.Altitude,
 	)
 	if err != nil {
 		return
@@ -27,62 +43,70 @@ func (repo *ObservationPositionRepository) Store(f domain.ObservationPosition) (
 	return
 }
 
-// FindByID find the field by id
-func (repo *ObservationPositionRepository) FindByID(identifier int64) (field domain.ObservationPosition, err error) {
-	row, err := repo.Query("SELECT id, organization_id, name, area, created_at, updated_at, deleted FROM fields WHERE id = ?", identifier)
+// FindByID find the observation position by id
+func (repo *ObservationPositionRepository) FindByID(identifier int64) (op domain.ObservationPosition, err error) {
+	row, err := repo.Query("SELECT * FROM observation_positions WHERE id = ?", identifier)
 	defer row.Close()
 	if err != nil {
 		return
 	}
 	var id int64
-	var organizationID int64
+	var fieldID int64
+	var plantID int64
 	var name string
-	var area []float64
+	var point float64
+	var altitude float64
 	var createdAt time.Time
 	var updatedAt time.Time
 	var deleted bool
 	row.Next()
-	if err = row.Scan(&id, &organizationID, &name, &area, &createdAt, &updatedAt, &deleted); err != nil {
+	if err = row.Scan(&id, &fieldID, &plantID, &name, &point, &altitude, &createdAt, &updatedAt, &deleted); err != nil {
 		return
 	}
-	field.ID = id
-	field.OrganizationID = organizationID
-	field.Name = name
-	field.Area = area
-	field.CreatedAt = createdAt
-	field.UpdatedAt = updatedAt
-	field.Deleted = deleted
+	op.ID = id
+	op.FieldID = fieldID
+	op.PlantID = plantID
+	op.Name = name
+	op.Point = point
+	op.Altitude = altitude
+	op.CreatedAt = createdAt
+	op.UpdatedAt = updatedAt
+	op.Deleted = deleted
 	return
 }
 
-// FindAll find all fields
-func (repo *ObservationPositionRepository) FindAll() (fields domain.ObservationPositions, err error) {
-	rows, err := repo.Query("SELECT id, organization_id, name, area, created_at, updated_at, deleted FROM fileds")
+// FindAll find all observation positions
+func (repo *ObservationPositionRepository) FindAll() (ops domain.ObservationPositions, err error) {
+	rows, err := repo.Query("SELECT * FROM observation_positions")
 	defer rows.Close()
 	if err != nil {
 		return
 	}
 	for rows.Next() {
 		var id int64
-		var organizationID int64
+		var fieldID int64
+		var plantID int64
 		var name string
-		var area []float64
+		var point float64
+		var altitude float64
 		var createdAt time.Time
 		var updatedAt time.Time
 		var deleted bool
-		if err := rows.Scan(&id, &organizationID, &name, &area, &createdAt, &updatedAt, &deleted); err != nil {
+		if err := rows.Scan(&id, &fieldID, &plantID, &name, &point, &altitude, &createdAt, &updatedAt, &deleted); err != nil {
 			continue
 		}
-		field := domain.ObservationPosition{
-			ID:             id,
-			OrganizationID: organizationID,
-			Name:           name,
-			Area:           area,
-			CreatedAt:      createdAt,
-			UpdatedAt:      updatedAt,
-			Deleted:        deleted,
+		op := domain.ObservationPosition{
+			ID:        id,
+			FieldID:   fieldID,
+			PlantID:   plantID,
+			Name:      name,
+			Point:     point,
+			Altitude:  altitude,
+			CreatedAt: createdAt,
+			UpdatedAt: updatedAt,
+			Deleted:   deleted,
 		}
-		fields = append(fields, field)
+		ops = append(ops, op)
 	}
 	return
 }

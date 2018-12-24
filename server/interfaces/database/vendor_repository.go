@@ -11,10 +11,39 @@ type VendorRepository struct {
 	SQLHandler
 }
 
-// Store insert values into field table
-func (repo *VendorRepository) Store(f domain.Vendor) (id int64, err error) {
+// Store insert values into vendor table
+func (repo *VendorRepository) Store(vendor domain.Vendor) (id int64, err error) {
 	result, err := repo.Execute(
-		"INSERT INTO fields (organization_id, name, area) VALUES (?, ?, ?)", f.OrganizationID, f.Name, f.Area,
+		`INSERT INTO vendors (
+			name,
+			organization_name,
+			voice,
+			facsimile,
+			delivary_point,
+			city,
+			postal_code,
+			country,
+			electronic_mail_address
+		) VALUES (
+			?,
+			?,
+			?,
+			?,
+			?,
+			?,
+			?,
+			?,
+			?
+		)`,
+		vendor.Name,
+		vendor.OrganizationName,
+		vendor.Voice,
+		vendor.Facsimile,
+		vendor.DelivaryPoint,
+		vendor.City,
+		vendor.PostalCode,
+		vendor.Country,
+		vendor.ElectronicMailAddress,
 	)
 	if err != nil {
 		return
@@ -27,62 +56,82 @@ func (repo *VendorRepository) Store(f domain.Vendor) (id int64, err error) {
 	return
 }
 
-// FindByID find the field by id
-func (repo *VendorRepository) FindByID(identifier int64) (field domain.Vendor, err error) {
-	row, err := repo.Query("SELECT id, organization_id, name, area, created_at, updated_at, deleted FROM fields WHERE id = ?", identifier)
+// FindByID find the vendor by id
+func (repo *VendorRepository) FindByID(identifier int64) (vendor domain.Vendor, err error) {
+	row, err := repo.Query("SELECT * FROM vendors WHERE id = ?", identifier)
 	defer row.Close()
 	if err != nil {
 		return
 	}
 	var id int64
-	var organizationID int64
 	var name string
-	var area []float64
+	var organizationName string
+	var voice string
+	var facsimile string
+	var delivaryPoint string
+	var city string
+	var postalCode string
+	var country string
+	var electronicMailAddress string
 	var createdAt time.Time
 	var updatedAt time.Time
-	var deleted bool
 	row.Next()
-	if err = row.Scan(&id, &organizationID, &name, &area, &createdAt, &updatedAt, &deleted); err != nil {
+	if err = row.Scan(&id, &name, &organizationName, &voice, &facsimile, &delivaryPoint, &city, &postalCode, &country, &electronicMailAddress, &createdAt, &updatedAt); err != nil {
 		return
 	}
-	field.ID = id
-	field.OrganizationID = organizationID
-	field.Name = name
-	field.Area = area
-	field.CreatedAt = createdAt
-	field.UpdatedAt = updatedAt
-	field.Deleted = deleted
+	vendor.ID = id
+	vendor.Name = name
+	vendor.OrganizationName = organizationName
+	vendor.Voice = voice
+	vendor.Facsimile = facsimile
+	vendor.DelivaryPoint = delivaryPoint
+	vendor.City = city
+	vendor.PostalCode = postalCode
+	vendor.Country = country
+	vendor.ElectronicMailAddress = electronicMailAddress
+	vendor.CreatedAt = createdAt
+	vendor.UpdatedAt = updatedAt
 	return
 }
 
-// FindAll find all fields
-func (repo *VendorRepository) FindAll() (fields domain.Vendors, err error) {
-	rows, err := repo.Query("SELECT id, organization_id, name, area, created_at, updated_at, deleted FROM fileds")
+// FindAll find all vendors
+func (repo *VendorRepository) FindAll() (vendors domain.Vendors, err error) {
+	rows, err := repo.Query("SELECT * FROM vendors")
 	defer rows.Close()
 	if err != nil {
 		return
 	}
 	for rows.Next() {
 		var id int64
-		var organizationID int64
 		var name string
-		var area []float64
+		var organizationName string
+		var voice string
+		var facsimile string
+		var delivaryPoint string
+		var city string
+		var postalCode string
+		var country string
+		var electronicMailAddress string
 		var createdAt time.Time
 		var updatedAt time.Time
-		var deleted bool
-		if err := rows.Scan(&id, &organizationID, &name, &area, &createdAt, &updatedAt, &deleted); err != nil {
+		if err := rows.Scan(&id, &name, &organizationName, &voice, &facsimile, &delivaryPoint, &city, &postalCode, &country, &electronicMailAddress, &createdAt, &updatedAt); err != nil {
 			continue
 		}
-		field := domain.Vendor{
-			ID:             id,
-			OrganizationID: organizationID,
-			Name:           name,
-			Area:           area,
-			CreatedAt:      createdAt,
-			UpdatedAt:      updatedAt,
-			Deleted:        deleted,
+		vendor := domain.Vendor{
+			ID:                    id,
+			Name:                  name,
+			OrganizationName:      organizationName,
+			Voice:                 voice,
+			Facsimile:             facsimile,
+			DelivaryPoint:         delivaryPoint,
+			City:                  city,
+			PostalCode:            postalCode,
+			Country:               country,
+			ElectronicMailAddress: electronicMailAddress,
+			CreatedAt:             createdAt,
+			UpdatedAt:             updatedAt,
 		}
-		fields = append(fields, field)
+		vendors = append(vendors, vendor)
 	}
 	return
 }

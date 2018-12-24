@@ -11,10 +11,27 @@ type SensorRepository struct {
 	SQLHandler
 }
 
-// Store insert values into field table
-func (repo *SensorRepository) Store(f domain.Sensor) (id int64, err error) {
+// Store insert values into sensor table
+func (repo *SensorRepository) Store(sensor domain.Sensor) (id int64, err error) {
 	result, err := repo.Execute(
-		"INSERT INTO fields (organization_id, name, area) VALUES (?, ?, ?)", f.OrganizationID, f.Name, f.Area,
+		`INSERT INTO sensors (
+			sensing_device_id,
+			observable_property_id,
+			individual_id,
+			sensor_number,
+			observation_condition
+		) VALUES (
+			?,
+			?,
+			?,
+			?,
+			?
+		)`,
+		sensor.SensingDeviceID,
+		sensor.ObservablePropertyID,
+		sensor.IndividualID,
+		sensor.SensorNumber,
+		sensor.ObservationCondition,
 	)
 	if err != nil {
 		return
@@ -27,62 +44,70 @@ func (repo *SensorRepository) Store(f domain.Sensor) (id int64, err error) {
 	return
 }
 
-// FindByID find the field by id
-func (repo *SensorRepository) FindByID(identifier int64) (field domain.Sensor, err error) {
-	row, err := repo.Query("SELECT id, organization_id, name, area, created_at, updated_at, deleted FROM fields WHERE id = ?", identifier)
+// FindByID find the sensor by id
+func (repo *SensorRepository) FindByID(identifier int64) (sensor domain.Sensor, err error) {
+	row, err := repo.Query("SELECT * FROM sensors WHERE id = ?", identifier)
 	defer row.Close()
 	if err != nil {
 		return
 	}
 	var id int64
-	var organizationID int64
-	var name string
-	var area []float64
+	var sensingDeviceID int64
+	var observablePropertyID int64
+	var individualID int64
+	var sensorNumber string
+	var observationCondition float64
 	var createdAt time.Time
 	var updatedAt time.Time
 	var deleted bool
 	row.Next()
-	if err = row.Scan(&id, &organizationID, &name, &area, &createdAt, &updatedAt, &deleted); err != nil {
+	if err = row.Scan(&id, &sensingDeviceID, &observablePropertyID, &individualID, &sensorNumber, &observationCondition, &createdAt, &updatedAt, &deleted); err != nil {
 		return
 	}
-	field.ID = id
-	field.OrganizationID = organizationID
-	field.Name = name
-	field.Area = area
-	field.CreatedAt = createdAt
-	field.UpdatedAt = updatedAt
-	field.Deleted = deleted
+	sensor.ID = id
+	sensor.SensingDeviceID = sensingDeviceID
+	sensor.ObservablePropertyID = observablePropertyID
+	sensor.IndividualID = individualID
+	sensor.SensorNumber = sensorNumber
+	sensor.ObservationCondition = observationCondition
+	sensor.CreatedAt = createdAt
+	sensor.UpdatedAt = updatedAt
+	sensor.Deleted = deleted
 	return
 }
 
-// FindAll find all fields
-func (repo *SensorRepository) FindAll() (fields domain.Sensors, err error) {
-	rows, err := repo.Query("SELECT id, organization_id, name, area, created_at, updated_at, deleted FROM fileds")
+// FindAll find all sensors
+func (repo *SensorRepository) FindAll() (sensors domain.Sensors, err error) {
+	rows, err := repo.Query("SELECT * FROM sensors")
 	defer rows.Close()
 	if err != nil {
 		return
 	}
 	for rows.Next() {
 		var id int64
-		var organizationID int64
-		var name string
-		var area []float64
+		var sensingDeviceID int64
+		var observablePropertyID int64
+		var individualID int64
+		var sensorNumber string
+		var observationCondition float64
 		var createdAt time.Time
 		var updatedAt time.Time
 		var deleted bool
-		if err := rows.Scan(&id, &organizationID, &name, &area, &createdAt, &updatedAt, &deleted); err != nil {
+		if err := rows.Scan(&id, &sensingDeviceID, &observablePropertyID, &individualID, &sensorNumber, &observationCondition, &createdAt, &updatedAt, &deleted); err != nil {
 			continue
 		}
-		field := domain.Sensor{
-			ID:             id,
-			OrganizationID: organizationID,
-			Name:           name,
-			Area:           area,
-			CreatedAt:      createdAt,
-			UpdatedAt:      updatedAt,
-			Deleted:        deleted,
+		sensor := domain.Sensor{
+			ID:                   id,
+			SensingDeviceID:      sensingDeviceID,
+			ObservablePropertyID: observablePropertyID,
+			IndividualID:         individualID,
+			SensorNumber:         sensorNumber,
+			ObservationCondition: observationCondition,
+			CreatedAt:            createdAt,
+			UpdatedAt:            updatedAt,
+			Deleted:              deleted,
 		}
-		fields = append(fields, field)
+		sensors = append(sensors, sensor)
 	}
 	return
 }

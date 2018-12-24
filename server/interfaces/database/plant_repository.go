@@ -12,9 +12,17 @@ type PlantRepository struct {
 }
 
 // Store insert values into field table
-func (repo *PlantRepository) Store(f domain.Plant) (id int64, err error) {
+func (repo *PlantRepository) Store(plant domain.Plant) (id int64, err error) {
 	result, err := repo.Execute(
-		"INSERT INTO fields (organization_id, name, area) VALUES (?, ?, ?)", f.OrganizationID, f.Name, f.Area,
+		`INSERT INTO plants (
+			plant_categories_id,
+			variety
+		) VALUES (
+			?,
+			?
+		)`,
+		plant.PlantCategoriesID,
+		plant.Variety,
 	)
 	if err != nil {
 		return
@@ -28,35 +36,31 @@ func (repo *PlantRepository) Store(f domain.Plant) (id int64, err error) {
 }
 
 // FindByID find the field by id
-func (repo *PlantRepository) FindByID(identifier int64) (field domain.Plant, err error) {
-	row, err := repo.Query("SELECT id, organization_id, name, area, created_at, updated_at, deleted FROM fields WHERE id = ?", identifier)
+func (repo *PlantRepository) FindByID(identifier int64) (plant domain.Plant, err error) {
+	row, err := repo.Query(`SELECT * FROM fields WHERE id = ?`, identifier)
 	defer row.Close()
 	if err != nil {
 		return
 	}
 	var id int64
-	var organizationID int64
-	var name string
-	var area []float64
+	var plantCategoriesID int64
+	var variety string
 	var createdAt time.Time
 	var updatedAt time.Time
-	var deleted bool
 	row.Next()
-	if err = row.Scan(&id, &organizationID, &name, &area, &createdAt, &updatedAt, &deleted); err != nil {
+	if err = row.Scan(&id, &plantCategoriesID, &variety, &createdAt, &updatedAt); err != nil {
 		return
 	}
-	field.ID = id
-	field.OrganizationID = organizationID
-	field.Name = name
-	field.Area = area
-	field.CreatedAt = createdAt
-	field.UpdatedAt = updatedAt
-	field.Deleted = deleted
+	plant.ID = id
+	plant.PlantCategoriesID = plantCategoriesID
+	plant.Variety = variety
+	plant.CreatedAt = createdAt
+	plant.UpdatedAt = updatedAt
 	return
 }
 
 // FindAll find all fields
-func (repo *PlantRepository) FindAll() (fields domain.Plants, err error) {
+func (repo *PlantRepository) FindAll() (plants domain.Plants, err error) {
 	rows, err := repo.Query("SELECT id, organization_id, name, area, created_at, updated_at, deleted FROM fileds")
 	defer rows.Close()
 	if err != nil {
@@ -64,25 +68,21 @@ func (repo *PlantRepository) FindAll() (fields domain.Plants, err error) {
 	}
 	for rows.Next() {
 		var id int64
-		var organizationID int64
-		var name string
-		var area []float64
+		var plantCategoriesID int64
+		var variety string
 		var createdAt time.Time
 		var updatedAt time.Time
-		var deleted bool
-		if err := rows.Scan(&id, &organizationID, &name, &area, &createdAt, &updatedAt, &deleted); err != nil {
+		if err := rows.Scan(&id, &plantCategoriesID, &variety, &createdAt, &updatedAt); err != nil {
 			continue
 		}
-		field := domain.Plant{
-			ID:             id,
-			OrganizationID: organizationID,
-			Name:           name,
-			Area:           area,
-			CreatedAt:      createdAt,
-			UpdatedAt:      updatedAt,
-			Deleted:        deleted,
+		plant := domain.Plant{
+			ID:                id,
+			PlantCategoriesID: plantCategoriesID,
+			Variety:           variety,
+			CreatedAt:         createdAt,
+			UpdatedAt:         updatedAt,
 		}
-		fields = append(fields, field)
+		plants = append(plants, plant)
 	}
 	return
 }

@@ -12,9 +12,23 @@ type SensingDeviceStatusRepository struct {
 }
 
 // Store insert values into field table
-func (repo *SensingDeviceStatusRepository) Store(f domain.SensingDeviceStatus) (id int64, err error) {
+func (repo *SensingDeviceStatusRepository) Store(sensingDeviceStatus domain.SensingDeviceStatus) (id int64, err error) {
 	result, err := repo.Execute(
-		"INSERT INTO fields (organization_id, name, area) VALUES (?, ?, ?)", f.OrganizationID, f.Name, f.Area,
+		`INSERT INTO sensing_device_status (
+			sensing_device_id,
+			battery,
+			status,
+			datetime
+		) VALUES (
+			?,
+			?,
+			?,
+			?
+		)`,
+		sensingDeviceStatus.SensingDeviceID,
+		sensingDeviceStatus.Battery,
+		sensingDeviceStatus.Status,
+		sensingDeviceStatus.Datetime,
 	)
 	if err != nil {
 		return
@@ -28,61 +42,61 @@ func (repo *SensingDeviceStatusRepository) Store(f domain.SensingDeviceStatus) (
 }
 
 // FindByID find the field by id
-func (repo *SensingDeviceStatusRepository) FindByID(identifier int64) (field domain.SensingDeviceStatus, err error) {
-	row, err := repo.Query("SELECT id, organization_id, name, area, created_at, updated_at, deleted FROM fields WHERE id = ?", identifier)
+func (repo *SensingDeviceStatusRepository) FindByID(identifier int64) (sensingDeviceStatus domain.SensingDeviceStatus, err error) {
+	row, err := repo.Query("SELECT * FROM sensing_device_status WHERE id = ?", identifier)
 	defer row.Close()
 	if err != nil {
 		return
 	}
 	var id int64
-	var organizationID int64
-	var name string
-	var area []float64
+	var sensingDeviceID int64
+	var battery int16
+	var status int16
+	var datetime time.Time
 	var createdAt time.Time
 	var updatedAt time.Time
-	var deleted bool
 	row.Next()
-	if err = row.Scan(&id, &organizationID, &name, &area, &createdAt, &updatedAt, &deleted); err != nil {
+	if err = row.Scan(&id, &sensingDeviceID, &battery, &status, &datetime, &createdAt, &updatedAt); err != nil {
 		return
 	}
-	field.ID = id
-	field.OrganizationID = organizationID
-	field.Name = name
-	field.Area = area
-	field.CreatedAt = createdAt
-	field.UpdatedAt = updatedAt
-	field.Deleted = deleted
+	sensingDeviceStatus.ID = id
+	sensingDeviceStatus.SensingDeviceID = sensingDeviceID
+	sensingDeviceStatus.Battery = battery
+	sensingDeviceStatus.Status = status
+	sensingDeviceStatus.Datetime = datetime
+	sensingDeviceStatus.CreatedAt = createdAt
+	sensingDeviceStatus.UpdatedAt = updatedAt
 	return
 }
 
 // FindAll find all fields
-func (repo *SensingDeviceStatusRepository) FindAll() (fields domain.SensingDeviceStatuses, err error) {
-	rows, err := repo.Query("SELECT id, organization_id, name, area, created_at, updated_at, deleted FROM fileds")
+func (repo *SensingDeviceStatusRepository) FindAll() (sensingDeviceStatuses domain.SensingDeviceStatuses, err error) {
+	rows, err := repo.Query("SELECT * FROM sensing_device_status")
 	defer rows.Close()
 	if err != nil {
 		return
 	}
 	for rows.Next() {
 		var id int64
-		var organizationID int64
-		var name string
-		var area []float64
+		var sensingDeviceID int64
+		var battery int16
+		var status int16
+		var datetime time.Time
 		var createdAt time.Time
 		var updatedAt time.Time
-		var deleted bool
-		if err := rows.Scan(&id, &organizationID, &name, &area, &createdAt, &updatedAt, &deleted); err != nil {
+		if err := rows.Scan(&id, &sensingDeviceID, &battery, &status, &datetime, &createdAt, &updatedAt); err != nil {
 			continue
 		}
-		field := domain.SensingDeviceStatus{
-			ID:             id,
-			OrganizationID: organizationID,
-			Name:           name,
-			Area:           area,
-			CreatedAt:      createdAt,
-			UpdatedAt:      updatedAt,
-			Deleted:        deleted,
+		sensingDeviceStatus := domain.SensingDeviceStatus{
+			ID:              id,
+			SensingDeviceID: sensingDeviceID,
+			Battery:         battery,
+			Status:          status,
+			Datetime:        datetime,
+			CreatedAt:       createdAt,
+			UpdatedAt:       updatedAt,
 		}
-		fields = append(fields, field)
+		sensingDeviceStatuses = append(sensingDeviceStatuses, sensingDeviceStatus)
 	}
 	return
 }

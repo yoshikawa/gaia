@@ -23,13 +23,13 @@ func (repo *IndividualRepository) Store(individual domain.Individual) (id int64,
 			minimum_observation_range,
 			maximum_observation_range,
 			code_of_observation_range,
-			minimum_observation_accuracy_of_measured_value, 
-			maximum_observation_accuracy_of_measured_value, 
+			minimum_observation_accuracy_of_measured_value,
+			maximum_observation_accuracy_of_measured_value,
 			code_of_observation_accuracy,
-			observation_resolution_of_measured_value, 
-			code_of_observation_resolution, 
-			observation_interval_strict, 
-			observation_timing_strict, 
+			observation_resolution_of_measured_value,
+			code_of_observation_resolution,
+			observation_interval_strict,
+			observation_timing_strict,
 			manufacturer,
 			location_name
 		) VALUES (
@@ -82,7 +82,7 @@ func (repo *IndividualRepository) Store(individual domain.Individual) (id int64,
 // FindByID find the individual by id
 func (repo *IndividualRepository) FindByID(identifier int64) (individual domain.Individual, err error) {
 	row, err := repo.Query(
-		`SELECT 
+		`SELECT
 			id,
 			short_name,
 			long_name,
@@ -92,13 +92,13 @@ func (repo *IndividualRepository) FindByID(identifier int64) (individual domain.
 			minimum_observation_range,
 			maximum_observation_range,
 			code_of_observation_range,
-			minimum_observation_accuracy_of_measured_value, 
-			maximum_observation_accuracy_of_measured_value, 
+			minimum_observation_accuracy_of_measured_value,
+			maximum_observation_accuracy_of_measured_value,
 			code_of_observation_accuracy,
-			observation_resolution_of_measured_value, 
-			code_of_observation_resolution, 
-			observation_interval_strict, 
-			observation_timing_strict, 
+			observation_resolution_of_measured_value,
+			code_of_observation_resolution,
+			observation_interval_strict,
+			observation_timing_strict,
 			manufacturer,
 			location_name
 		FROM individuals WHERE id = ?`, identifier,
