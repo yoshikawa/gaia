@@ -7,7 +7,7 @@ type SensingDeviceStatusInteractor struct {
 	SensingDeviceStatusRepository SensingDeviceStatusRepository
 }
 
-// Add is to store gateway device's data into database
+// Add is to store sensing device status's data into database
 func (interactor *SensingDeviceStatusInteractor) Add(u domain.SensingDeviceStatus) (sensingDeviceStatus domain.SensingDeviceStatus, err error) {
 	identifier, err := interactor.SensingDeviceStatusRepository.Store(u)
 	if err != nil {
@@ -17,13 +17,13 @@ func (interactor *SensingDeviceStatusInteractor) Add(u domain.SensingDeviceStatu
 	return
 }
 
-// SensingDeviceStatuses is to find all gateway device's data from database
+// SensingDeviceStatuses is to find all sensing device statu's data from database
 func (interactor *SensingDeviceStatusInteractor) SensingDeviceStatuses() (sensingDeviceStatuses domain.SensingDeviceStatuses, err error) {
 	sensingDeviceStatuses, err = interactor.SensingDeviceStatusRepository.FindAll()
 	return
 }
 
-// SensingDeviceStatusByID is to find by gateway device's id from database
+// SensingDeviceStatusByID is to find by sensing status's id from database
 func (interactor *SensingDeviceStatusInteractor) SensingDeviceStatusByID(identifier int64) (sensingDeviceStatus domain.SensingDeviceStatus, err error) {
 	sensingDeviceStatus, err = interactor.SensingDeviceStatusRepository.FindByID(identifier)
 	return
