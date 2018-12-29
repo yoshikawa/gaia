@@ -3,7 +3,7 @@ package database
 import (
 	"time"
 
-	"github.com/Pluslab/fieldsensing/server/domain"
+	"github.com/Pluslab/gaia/server/domain"
 )
 
 // GatewayDeviceRepository model

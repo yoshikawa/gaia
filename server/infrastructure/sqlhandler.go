@@ -3,7 +3,7 @@ package infrastructure
 import (
 	"database/sql"
 
-	"github.com/Pluslab/fieldsensing/server/interfaces/database"
+	"github.com/Pluslab/gaia/server/interfaces/database"
 	// MySQL driver
 	_ "github.com/go-sql-driver/mysql"
 )

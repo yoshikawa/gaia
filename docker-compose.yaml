@@ -7,7 +7,7 @@ services:
       context: .
       dockerfile: ./docker/go/Dockerfile
     volumes:
-            - ./:/go/src/github.com/Pluslab/fieldsensing:Z
+            - ./:/go/src/github.com/Pluslab/gaia:Z
     ports:
       - 8080:8080
     tty:

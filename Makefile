@@ -53,5 +53,8 @@ npm/build:
 run:
 	docker-compose exec api go run main.go
 
+test:
+	docker-compose exec api go test ./...
+
 doc:
 	godoc -http=:6060

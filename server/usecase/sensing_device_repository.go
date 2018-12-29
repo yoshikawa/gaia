@@ -1,6 +1,6 @@
 package usecase
 
-import "github.com/Pluslab/fieldsensing/server/domain"
+import "github.com/Pluslab/gaia/server/domain"
 
 // SensingDeviceRepository model
 type SensingDeviceRepository interface {

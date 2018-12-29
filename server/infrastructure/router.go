@@ -1,7 +1,7 @@
 package infrastructure
 
 import (
-	"github.com/Pluslab/fieldsensing/server/interfaces/controller"
+	"github.com/Pluslab/gaia/server/interfaces/controller"
 	"github.com/gin-gonic/gin"
 )
 

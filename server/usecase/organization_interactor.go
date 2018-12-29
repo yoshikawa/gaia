@@ -1,7 +1,7 @@
 package usecase
 
 import (
-	"github.com/Pluslab/fieldsensing/server/domain"
+	"github.com/Pluslab/gaia/server/domain"
 )
 
 // OrganizationInteractor model

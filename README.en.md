@@ -1,12 +1,12 @@
-# FieldSensing
+# GAIA
 
-[![CircleCI](https://circleci.com/gh/Pluslab/fieldsensing.svg?style=svg&circle-token=f7d7b8e52887580b128e416f39b29974cb64c503)](https://circleci.com/gh/Pluslab/fieldsensing)
+[![CircleCI](https://circleci.com/gh/Pluslab/gaia.svg?style=svg&circle-token=f7d7b8e52887580b128e416f39b29974cb64c503)](https://circleci.com/gh/Pluslab/gaia)
 
-FieldSensing
+Geometry App In Agriculture
 
 ## Description
 
-Multi-platform field sensing system
+Geometry App In Agriculture
 
 ## Requirements
 
@@ -21,7 +21,7 @@ Multi-platform field sensing system
 ## Usage
 
 ```sh
-git clone git@github.com:Pluslab/fieldsensing.git
+git clone git@github.com:Pluslab/gaia.git
 ```
 
 ### develop backend
@@ -48,7 +48,7 @@ The architecture of the project follows the principles of Clean Architecture.
 
 ## Licence
 
-[MIT](https://github.com/Pluslab/FieldSensing/blob/master/LICENSE)
+[MIT](https://github.com/Pluslab/gaia/blob/master/LICENSE)
 
 ## Author
 

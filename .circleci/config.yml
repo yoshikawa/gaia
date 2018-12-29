@@ -10,7 +10,7 @@ jobs:
           MYSQL_DATABASE: fieldsensing
           MYSQL_ROOT_PASSWORD: password
 
-    working_directory: /go/src/github.com/Pluslab/fieldsensing
+    working_directory: /go/src/github.com/Pluslab/gaia
     steps:
       - checkout
 

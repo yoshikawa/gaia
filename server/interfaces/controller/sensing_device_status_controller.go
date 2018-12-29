@@ -3,9 +3,9 @@ package controller
 import (
 	"strconv"
 
-	"github.com/Pluslab/fieldsensing/server/domain"
-	"github.com/Pluslab/fieldsensing/server/interfaces/database"
-	"github.com/Pluslab/fieldsensing/server/usecase"
+	"github.com/Pluslab/gaia/server/domain"
+	"github.com/Pluslab/gaia/server/interfaces/database"
+	"github.com/Pluslab/gaia/server/usecase"
 )
 
 // SensingDeviceStatusController model

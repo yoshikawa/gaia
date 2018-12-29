@@ -1,6 +1,6 @@
 package main
 
-import "github.com/Pluslab/fieldsensing/server/infrastructure"
+import "github.com/Pluslab/gaia/server/infrastructure"
 
 func main() {
 	infrastructure.Router.Run()
