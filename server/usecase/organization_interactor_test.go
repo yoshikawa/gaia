@@ -22,6 +22,27 @@ func TestOrganizationInteractor_Add(t *testing.T) {
 		wantErr          bool
 	}{
 		// TODO: Add test cases.
+		// {
+		// 	name: "org_test_1",
+		// 	fields: fields{
+		// 		nil,
+		// 	},
+		// 	args: args{
+		// 		o: domain.Organization{
+		// 			ID:        1,
+		// 			Name:      "hoge",
+		// 			CreatedAt: time.Now(),
+		// 			UpdatedAt: time.Now(),
+		// 		},
+		// 	},
+		// 	wantOrganization: domain.Organization{
+		// 		ID:        1,
+		// 		Name:      "hoge",
+		// 		CreatedAt: time.Now(),
+		// 		UpdatedAt: time.Now(),
+		// 	},
+		// 	wantErr: true,
+		// },
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
