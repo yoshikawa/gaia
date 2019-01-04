@@ -9,8 +9,7 @@ type OrganizationInteractor struct {
 	OrganizationRepository OrganizationRepository
 }
 
-// Add is to add organization
-// this is Gateway. input port.
+// Add is to add organization data into database
 func (interactor *OrganizationInteractor) Add(o domain.Organization) (organization domain.Organization, err error) {
 	identifier, err := interactor.OrganizationRepository.Store(o)
 	if err != nil {

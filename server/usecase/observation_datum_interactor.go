@@ -7,7 +7,7 @@ type ObservationDatumInteractor struct {
 	ObservationDatumRepository ObservationDatumRepository
 }
 
-// Add is to store gateway device's data into database
+// Add is to store observation data into database
 func (interactor *ObservationDatumInteractor) Add(u domain.ObservationDatum) (observationDatum domain.ObservationDatum, err error) {
 	identifier, err := interactor.ObservationDatumRepository.Store(u)
 	if err != nil {
@@ -17,13 +17,13 @@ func (interactor *ObservationDatumInteractor) Add(u domain.ObservationDatum) (ob
 	return
 }
 
-// ObservationData is to find all gateway device's data from database
+// ObservationData is to find all observation data from database
 func (interactor *ObservationDatumInteractor) ObservationData() (observationDatum domain.ObservationData, err error) {
 	observationDatum, err = interactor.ObservationDatumRepository.FindAll()
 	return
 }
 
-// ObservationDatumByID is to find by gateway device's id from database
+// ObservationDatumByID is to find by observation datum's id from database
 func (interactor *ObservationDatumInteractor) ObservationDatumByID(identifier int64) (observationDatum domain.ObservationDatum, err error) {
 	observationDatum, err = interactor.ObservationDatumRepository.FindByID(identifier)
 	return
