@@ -53,7 +53,7 @@ func init() {
 	router.GET("/gateway-device-statuses/:id", func(c *gin.Context) { gatewayDeviceStatusController.Show(c) })
 	// individual api route
 	router.POST("/individuals", func(c *gin.Context) { individualController.Create(c) })
-	router.GET("individuals", func(c *gin.Context) { individualController.Index(c) })
+	router.GET("/individuals", func(c *gin.Context) { individualController.Index(c) })
 	router.GET("/individuals/:id", func(c *gin.Context) { individualController.Show(c) })
 	// observable property api route
 	router.POST("/observable-properties", func(c *gin.Context) { observablePropertyController.Create(c) })
