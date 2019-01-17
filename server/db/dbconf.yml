@@ -1,6 +1,6 @@
 development:
     driver: mymysql
-    open: tcp:db:3306*fieldsensing/root/password
+    open: tcp:localhost:3306*fieldsensing/root/password
 
 docker:
     driver: mymysql
