@@ -30,3 +30,9 @@ func (interactor *UserInteractor) Users() (users domain.Users, err error) {
 	users, err = interactor.UserRepository.FindAll()
 	return
 }
+
+// Login is to login by user's email from database
+func (interactor *UserInteractor) Login(email string) (user domain.User, err error) {
+	user, err = interactor.UserRepository.Login(email)
+	return
+}
