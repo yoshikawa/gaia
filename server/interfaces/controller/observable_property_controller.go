@@ -24,36 +24,36 @@ func NewObservablePropertyController(SQLHandler database.SQLHandler) *Observable
 	}
 }
 
-// Create is to create the field
+// Create is to create the observableProperty
 func (controller *ObservablePropertyController) Create(c Context) {
-	f := domain.ObservableProperty{}
-	c.Bind(&f)
-	field, err := controller.Interactor.Add(f)
+	op := domain.ObservableProperty{}
+	c.Bind(&op)
+	observableProperty, err := controller.Interactor.Add(op)
 	if err != nil {
 		c.JSON(500, err)
 		return
 	}
-	c.JSON(201, field)
+	c.JSON(201, observableProperty)
 }
 
-// Index is to index the fields
+// Index is to index the observableProperties
 func (controller *ObservablePropertyController) Index(c Context) {
-	fields, err := controller.Interactor.ObservableProperties()
+	observableProperties, err := controller.Interactor.ObservableProperties()
 	if err != nil {
 		c.JSON(500, err)
 		return
 	}
-	c.JSON(200, fields)
+	c.JSON(200, observableProperties)
 }
 
-// Show is to show the field
+// Show is to show the observableProperty
 func (controller *ObservablePropertyController) Show(c Context) {
 	id, _ := strconv.Atoi(c.Param("id"))
 	id64 := int64(id)
-	field, err := controller.Interactor.ObservablePropertyByID(id64)
+	observableProperty, err := controller.Interactor.ObservablePropertyByID(id64)
 	if err != nil {
 		c.JSON(500, err)
 		return
 	}
-	c.JSON(200, field)
+	c.JSON(200, observableProperty)
 }
