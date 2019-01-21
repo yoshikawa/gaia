@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>fieldsensing</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../../dist/css/main.css" />
+    <script src="../../dist/js/main.js"></script> 
+</head>
+<body>
+    <div class="container-users">
+        <h3>Users</h3>
+        <div class="users-div">
+            <table class="users-table">
+                <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>unit_id</th>
+                        <th>name</th>
+                        <th>email</th>
+                        <th>country</th>
+                        <th>administrator</th>
+                        <th class="actions">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($users as $user): ?>
+                    <tr>
+                        <td><?= $this->Number->format($user->id) ?></td>
+                        <td><?= $this->Number->format($user->unit_id) ?></td>
+                        <td><?= h($user->name) ?></td>
+                        <td><?= h($user->email) ?></td>
+                        <td><?= h($user->country) ?></td>
+                        <td><?= h($user->administrator) ?></td>
+                        <td class="actions">
+                            <?= $this->Html->link(__('View'), ['action' => 'view', $user->id]) ?>
+                            <?= $this->Html->link(__('Edit'), ['action' => 'edit', $user->id]) ?>
+                            <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $user->id], ['confirm' => __('Are you sure you want to delete # {0}?', $user->id)]) ?>
+                        </td>
+                    </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
+        <div class="paginator">
+            <ul class="pagination">
+                <?= $this->Paginator->first('<< ' . __('first')) ?>
+                <?= $this->Paginator->prev('< ' . __('previous')) ?>
+                <?= $this->Paginator->numbers() ?>
+                <?= $this->Paginator->next(__('next') . ' >') ?>
+                <?= $this->Paginator->last(__('last') . ' >>') ?>
+            </ul>
+            <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
+        </div>
+    </div>
+</body>
+</html>
