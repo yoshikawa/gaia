@@ -96,20 +96,3 @@ func (repo *UserRepository) FindAll() (users domain.Users, err error) {
 	}
 	return
 }
-
-// Login find the user by user email
-func (repo *UserRepository) Login(inputEmail string) (user domain.User, err error) {
-	row, err := repo.Query("SELECT password FROM users WHERE email = ?", inputEmail)
-	defer row.Close()
-	if err != nil {
-		return
-	}
-	var registeredPassword string
-	row.Next()
-	if err = row.Scan(&registeredPassword); err != nil {
-		return
-	}
-	user.Email = inputEmail
-	user.Password = registeredPassword
-	return
-}

@@ -11,8 +11,9 @@ var Router *gin.Engine
 func init() {
 	router := gin.Default()
 
-	organizationController := controller.NewOrganizationController(NewSQLHandler())
+	sessionController := controller.NewSessionController(NewSQLHandler())
 	userController := controller.NewUserController(NewSQLHandler())
+	organizationController := controller.NewOrganizationController(NewSQLHandler())
 	vendorController := controller.NewVendorController(NewSQLHandler())
 	fieldController := controller.NewFieldController(NewSQLHandler())
 	gatewayDeviceController := controller.NewGatewayDeviceController(NewSQLHandler())
@@ -27,8 +28,9 @@ func init() {
 	sensingDeviceStatusController := controller.NewSensingDeviceStatusController(NewSQLHandler())
 	sensorController := controller.NewSensorController(NewSQLHandler())
 
+	// session awi route
+	router.POST("/login", func(c *gin.Context) { sessionController.Login(c) })
 	// user api route
-	router.POST("/login", func(c *gin.Context) { userController.Login(c) })
 	router.POST("/users", func(c *gin.Context) { userController.Create(c) })
 	router.GET("/users", func(c *gin.Context) { userController.Index(c) })
 	router.GET("/users/:id", func(c *gin.Context) { userController.Show(c) })
