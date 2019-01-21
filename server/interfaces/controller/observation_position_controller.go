@@ -24,36 +24,36 @@ func NewObservationPositionController(SQLHandler database.SQLHandler) *Observati
 	}
 }
 
-// Create is to create the field
+// Create is to create the observation position
 func (controller *ObservationPositionController) Create(c Context) {
-	f := domain.ObservationPosition{}
-	c.Bind(&f)
-	field, err := controller.Interactor.Add(f)
+	op := domain.ObservationPosition{}
+	c.Bind(&op)
+	observationPosition, err := controller.Interactor.Add(op)
 	if err != nil {
 		c.JSON(500, err)
 		return
 	}
-	c.JSON(201, field)
+	c.JSON(201, observationPosition)
 }
 
-// Index is to index the fields
+// Index is to index the observation positions
 func (controller *ObservationPositionController) Index(c Context) {
-	fields, err := controller.Interactor.ObservationPositions()
+	observationPositions, err := controller.Interactor.ObservationPositions()
 	if err != nil {
 		c.JSON(500, err)
 		return
 	}
-	c.JSON(200, fields)
+	c.JSON(200, observationPositions)
 }
 
-// Show is to show the field
+// Show is to show the observation position
 func (controller *ObservationPositionController) Show(c Context) {
 	id, _ := strconv.Atoi(c.Param("id"))
 	id64 := int64(id)
-	field, err := controller.Interactor.ObservationPositionByID(id64)
+	observationPosition, err := controller.Interactor.ObservationPositionByID(id64)
 	if err != nil {
 		c.JSON(500, err)
 		return
 	}
-	c.JSON(200, field)
+	c.JSON(200, observationPosition)
 }

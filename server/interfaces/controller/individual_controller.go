@@ -24,36 +24,36 @@ func NewIndividualController(SQLHandler database.SQLHandler) *IndividualControll
 	}
 }
 
-// Create is to create the field
+// Create is to create the individual
 func (controller *IndividualController) Create(c Context) {
-	f := domain.Individual{}
-	c.Bind(&f)
-	field, err := controller.Interactor.Add(f)
+	i := domain.Individual{}
+	c.Bind(&i)
+	individual, err := controller.Interactor.Add(i)
 	if err != nil {
 		c.JSON(500, err)
 		return
 	}
-	c.JSON(201, field)
+	c.JSON(201, individual)
 }
 
-// Index is to index the fields
+// Index is to index the individuals
 func (controller *IndividualController) Index(c Context) {
-	fields, err := controller.Interactor.Individuals()
+	individuals, err := controller.Interactor.Individuals()
 	if err != nil {
 		c.JSON(500, err)
 		return
 	}
-	c.JSON(200, fields)
+	c.JSON(200, individuals)
 }
 
-// Show is to show the field
+// Show is to show the individual
 func (controller *IndividualController) Show(c Context) {
 	id, _ := strconv.Atoi(c.Param("id"))
 	id64 := int64(id)
-	field, err := controller.Interactor.IndividualByID(id64)
+	individual, err := controller.Interactor.IndividualByID(id64)
 	if err != nil {
 		c.JSON(500, err)
 		return
 	}
-	c.JSON(200, field)
+	c.JSON(200, individual)
 }

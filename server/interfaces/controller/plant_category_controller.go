@@ -24,36 +24,36 @@ func NewPlantCategoryController(SQLHandler database.SQLHandler) *PlantCategoryCo
 	}
 }
 
-// Create is to create the field
+// Create is to create the plant category
 func (controller *PlantCategoryController) Create(c Context) {
-	f := domain.PlantCategory{}
-	c.Bind(&f)
-	field, err := controller.Interactor.Add(f)
+	pc := domain.PlantCategory{}
+	c.Bind(&pc)
+	plantCategory, err := controller.Interactor.Add(pc)
 	if err != nil {
 		c.JSON(500, err)
 		return
 	}
-	c.JSON(201, field)
+	c.JSON(201, plantCategory)
 }
 
-// Index is to index the fields
+// Index is to index the plant categoris
 func (controller *PlantCategoryController) Index(c Context) {
-	fields, err := controller.Interactor.PlantCategories()
+	plantCategoris, err := controller.Interactor.PlantCategories()
 	if err != nil {
 		c.JSON(500, err)
 		return
 	}
-	c.JSON(200, fields)
+	c.JSON(200, plantCategoris)
 }
 
-// Show is to show the field
+// Show is to show the plant category
 func (controller *PlantCategoryController) Show(c Context) {
 	id, _ := strconv.Atoi(c.Param("id"))
 	id64 := int64(id)
-	field, err := controller.Interactor.PlantCategoryByID(id64)
+	plantCategory, err := controller.Interactor.PlantCategoryByID(id64)
 	if err != nil {
 		c.JSON(500, err)
 		return
 	}
-	c.JSON(200, field)
+	c.JSON(200, plantCategory)
 }

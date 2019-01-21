@@ -24,36 +24,36 @@ func NewVendorController(SQLHandler database.SQLHandler) *VendorController {
 	}
 }
 
-// Create is to create the field
+// Create is to create the vendor
 func (controller *VendorController) Create(c Context) {
-	f := domain.Vendor{}
-	c.Bind(&f)
-	field, err := controller.Interactor.Add(f)
+	v := domain.Vendor{}
+	c.Bind(&v)
+	vendor, err := controller.Interactor.Add(v)
 	if err != nil {
 		c.JSON(500, err)
 		return
 	}
-	c.JSON(201, field)
+	c.JSON(201, vendor)
 }
 
-// Index is to index the fields
+// Index is to index the vendors
 func (controller *VendorController) Index(c Context) {
-	fields, err := controller.Interactor.Vendors()
+	vendors, err := controller.Interactor.Vendors()
 	if err != nil {
 		c.JSON(500, err)
 		return
 	}
-	c.JSON(200, fields)
+	c.JSON(200, vendors)
 }
 
-// Show is to show the field
+// Show is to show the vendor
 func (controller *VendorController) Show(c Context) {
 	id, _ := strconv.Atoi(c.Param("id"))
 	id64 := int64(id)
-	field, err := controller.Interactor.VendorByID(id64)
+	vendor, err := controller.Interactor.VendorByID(id64)
 	if err != nil {
 		c.JSON(500, err)
 		return
 	}
-	c.JSON(200, field)
+	c.JSON(200, vendor)
 }
