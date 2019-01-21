@@ -1,9 +1,13 @@
 package controller
 
 import (
+	"fmt"
+
 	"github.com/Pluslab/gaia/server/domain"
 	"github.com/Pluslab/gaia/server/interfaces/database"
 	"github.com/Pluslab/gaia/server/usecase"
+	"github.com/gin-gonic/contrib/sessions"
+	"github.com/gin-gonic/gin"
 	"golang.org/x/crypto/bcrypt"
 )
 
@@ -24,9 +28,21 @@ func NewSessionController(SQLHandler database.SQLHandler) *SessionController {
 }
 
 // Login is a function for logging in
-func (controller *SessionController) Login(c Context) {
+func (controller *SessionController) Login(c *gin.Context) {
 	u := domain.User{}
 	c.Bind(&u)
+	if u.Email == "" || u.Password == "" {
+		c.JSON(401, fmt.Errorf("Error: Please input Email and Password"))
+		return
+	}
+	if u.Email == "" {
+		c.JSON(401, fmt.Errorf("Error: Please input Email"))
+		return
+	}
+	if u.Password == "" {
+		c.JSON(401, fmt.Errorf("Error: Please input Password"))
+		return
+	}
 	user, err := controller.Interactor.Login(u.Email)
 	if err != nil {
 		c.JSON(500, err)
@@ -37,7 +53,18 @@ func (controller *SessionController) Login(c Context) {
 		c.JSON(500, err)
 		return
 	}
+	session := sessions.Default(c)
+	session.Set("alive", true)
+	session.Set("UserID", user.ID)
+	session.Set("UserName", user.Name)
+	session.Save()
+	c.JSON(200, session)
+}
 
-	// TODO: session info
-	c.JSON(200, user)
+// Logout is a function for logging out
+func (controller *SessionController) Logout(c *gin.Context) {
+	session := sessions.Default(c)
+	session.Clear()
+	session.Save()
+	c.JSON(200, session)
 }

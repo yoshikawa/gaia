@@ -2,6 +2,7 @@ package infrastructure
 
 import (
 	"github.com/Pluslab/gaia/server/interfaces/controller"
+	"github.com/gin-gonic/contrib/sessions"
 	"github.com/gin-gonic/gin"
 )
 
@@ -10,6 +11,10 @@ var Router *gin.Engine
 
 func init() {
 	router := gin.Default()
+
+	store := sessions.NewCookieStore([]byte("secret"))
+	// SessionNameは任意
+	router.Use(sessions.Sessions("SessionName", store))
 
 	sessionController := controller.NewSessionController(NewSQLHandler())
 	userController := controller.NewUserController(NewSQLHandler())
@@ -30,6 +35,7 @@ func init() {
 
 	// session awi route
 	router.POST("/login", func(c *gin.Context) { sessionController.Login(c) })
+	router.GET("/logout", func(c *gin.Context) { sessionController.Logout(c) })
 	// user api route
 	router.POST("/users", func(c *gin.Context) { userController.Create(c) })
 	router.GET("/users", func(c *gin.Context) { userController.Index(c) })

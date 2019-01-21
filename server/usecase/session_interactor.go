@@ -12,3 +12,8 @@ func (interactor *SessionInteractor) Login(email string) (user domain.User, err 
 	user, err = interactor.SessionRepository.Login(email)
 	return
 }
+
+// Logout is a function for logging out
+func (interactor *SessionInteractor) Logout() {
+	interactor.SessionRepository.Logout()
+}

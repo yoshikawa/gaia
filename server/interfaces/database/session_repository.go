@@ -11,17 +11,25 @@ type SessionRepository struct {
 
 // Login find the user by user email and password
 func (repo *SessionRepository) Login(inputEmail string) (user domain.User, err error) {
-	row, err := repo.Query("SELECT password FROM users WHERE email = ?", inputEmail)
+	row, err := repo.Query("SELECT id, name, password FROM users WHERE email = ?", inputEmail)
 	defer row.Close()
 	if err != nil {
 		return
 	}
-	var registeredPassword string
+	var id int64
+	var name string
+	var password string
 	row.Next()
-	if err = row.Scan(&registeredPassword); err != nil {
+	if err = row.Scan(&id, &name, &password); err != nil {
 		return
 	}
-	user.Email = inputEmail
-	user.Password = registeredPassword
+	user.ID = id
+	user.Name = name
+	user.Password = password
+	return
+}
+
+// Logout is a function to wrap session repo
+func (repo *SessionRepository) Logout() {
 	return
 }
