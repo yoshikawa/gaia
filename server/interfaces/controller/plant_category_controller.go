@@ -46,7 +46,7 @@ func (controller *PlantCategoryController) Index(c Context) {
 	c.JSON(200, plantCategories)
 }
 
-// Show is to show the field
+// Show is to show the plant category
 func (controller *PlantCategoryController) Show(c Context) {
 	id, _ := strconv.Atoi(c.Param("id"))
 	id64 := int64(id)

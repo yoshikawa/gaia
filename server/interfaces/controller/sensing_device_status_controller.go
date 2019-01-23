@@ -46,7 +46,7 @@ func (controller *SensingDeviceStatusController) Index(c Context) {
 	c.JSON(200, sensingDeviceStatuses)
 }
 
-// Show is to show the field
+// Show is to show the sensing device status
 func (controller *SensingDeviceStatusController) Show(c Context) {
 	id, _ := strconv.Atoi(c.Param("id"))
 	id64 := int64(id)

@@ -46,7 +46,7 @@ func (controller *GatewayDeviceStatusController) Index(c Context) {
 	c.JSON(200, gatewayDeviceStatuses)
 }
 
-// Show is to show the gateway device status
+// Show is to show the gateway device status by id
 func (controller *GatewayDeviceStatusController) Show(c Context) {
 	id, _ := strconv.Atoi(c.Param("id"))
 	id64 := int64(id)

@@ -24,7 +24,7 @@ func NewObservationDatumController(SQLHandler database.SQLHandler) *ObservationD
 	}
 }
 
-// Create is to create the observation datum
+// Create is to create the observation dataum
 func (controller *ObservationDatumController) Create(c Context) {
 	od := domain.ObservationDatum{}
 	c.Bind(&od)
@@ -46,7 +46,7 @@ func (controller *ObservationDatumController) Index(c Context) {
 	c.JSON(200, observationData)
 }
 
-// Show is to show the observation datum
+// Show is to show the observation dataum
 func (controller *ObservationDatumController) Show(c Context) {
 	id, _ := strconv.Atoi(c.Param("id"))
 	id64 := int64(id)
