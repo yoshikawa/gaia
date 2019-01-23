@@ -81,7 +81,7 @@ func (repo *SensingDeviceRepository) FindByID(identifier int64) (sensingDevice d
 	return
 }
 
-// FindAll find all fields
+// FindAll find all sensing devices
 func (repo *SensingDeviceRepository) FindAll() (sensingDevices domain.SensingDevices, err error) {
 	rows, err := repo.Query("SELECT * FROM sensing_devices")
 	defer rows.Close()

@@ -24,36 +24,36 @@ func NewSensorController(SQLHandler database.SQLHandler) *SensorController {
 	}
 }
 
-// Create is to create the field
+// Create is to create the sensor
 func (controller *SensorController) Create(c Context) {
-	f := domain.Sensor{}
-	c.Bind(&f)
-	field, err := controller.Interactor.Add(f)
+	s := domain.Sensor{}
+	c.Bind(&s)
+	sensor, err := controller.Interactor.Add(s)
 	if err != nil {
 		c.JSON(500, err)
 		return
 	}
-	c.JSON(201, field)
+	c.JSON(201, sensor)
 }
 
-// Index is to index the fields
+// Index is to index the sensors
 func (controller *SensorController) Index(c Context) {
-	fields, err := controller.Interactor.Sensors()
+	sensors, err := controller.Interactor.Sensors()
 	if err != nil {
 		c.JSON(500, err)
 		return
 	}
-	c.JSON(200, fields)
+	c.JSON(200, sensors)
 }
 
-// Show is to show the field
+// Show is to show the sensor
 func (controller *SensorController) Show(c Context) {
 	id, _ := strconv.Atoi(c.Param("id"))
 	id64 := int64(id)
-	field, err := controller.Interactor.SensorByID(id64)
+	sensor, err := controller.Interactor.SensorByID(id64)
 	if err != nil {
 		c.JSON(500, err)
 		return
 	}
-	c.JSON(200, field)
+	c.JSON(200, sensor)
 }
