@@ -25,7 +25,7 @@ type SQLRow struct {
 
 // NewSQLHandler handling SQL
 func NewSQLHandler() *SQLHandler {
-	conn, err := sql.Open("mysql", "root:password@tcp(localhost:3306)/fieldsensing?parseTime=true")
+	conn, err := sql.Open("mysql", "root:password@tcp(db:3306)/fieldsensing?parseTime=true")
 	if err != nil {
 		panic(err.Error)
 	}
