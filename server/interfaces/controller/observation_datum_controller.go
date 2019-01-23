@@ -24,36 +24,36 @@ func NewObservationDatumController(SQLHandler database.SQLHandler) *ObservationD
 	}
 }
 
-// Create is to create the field
+// Create is to create the observation datum
 func (controller *ObservationDatumController) Create(c Context) {
-	f := domain.ObservationDatum{}
-	c.Bind(&f)
-	field, err := controller.Interactor.Add(f)
+	od := domain.ObservationDatum{}
+	c.Bind(&od)
+	observationDatum, err := controller.Interactor.Add(od)
 	if err != nil {
 		c.JSON(500, err)
 		return
 	}
-	c.JSON(201, field)
+	c.JSON(201, observationDatum)
 }
 
-// Index is to index the fields
+// Index is to index the observation data
 func (controller *ObservationDatumController) Index(c Context) {
-	fields, err := controller.Interactor.ObservationData()
+	observationData, err := controller.Interactor.ObservationData()
 	if err != nil {
 		c.JSON(500, err)
 		return
 	}
-	c.JSON(200, fields)
+	c.JSON(200, observationData)
 }
 
-// Show is to show the field
+// Show is to show the observation datum
 func (controller *ObservationDatumController) Show(c Context) {
 	id, _ := strconv.Atoi(c.Param("id"))
 	id64 := int64(id)
-	field, err := controller.Interactor.ObservationDatumByID(id64)
+	observationDatum, err := controller.Interactor.ObservationDatumByID(id64)
 	if err != nil {
 		c.JSON(500, err)
 		return
 	}
-	c.JSON(200, field)
+	c.JSON(200, observationDatum)
 }

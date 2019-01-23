@@ -24,36 +24,36 @@ func NewGatewayDeviceController(SQLHandler database.SQLHandler) *GatewayDeviceCo
 	}
 }
 
-// Create is to create the field
+// Create is to create the gateway device
 func (controller *GatewayDeviceController) Create(c Context) {
-	f := domain.GatewayDevice{}
-	c.Bind(&f)
-	field, err := controller.Interactor.Add(f)
+	gd := domain.GatewayDevice{}
+	c.Bind(&gd)
+	gatewayDevice, err := controller.Interactor.Add(gd)
 	if err != nil {
 		c.JSON(500, err)
 		return
 	}
-	c.JSON(201, field)
+	c.JSON(201, gatewayDevice)
 }
 
-// Index is to index the fields
+// Index is to index the gateway devices
 func (controller *GatewayDeviceController) Index(c Context) {
-	fields, err := controller.Interactor.GatewayDevices()
+	gatewayDevices, err := controller.Interactor.GatewayDevices()
 	if err != nil {
 		c.JSON(500, err)
 		return
 	}
-	c.JSON(200, fields)
+	c.JSON(200, gatewayDevices)
 }
 
-// Show is to show the field
+// Show is to show the gateway device
 func (controller *GatewayDeviceController) Show(c Context) {
 	id, _ := strconv.Atoi(c.Param("id"))
 	id64 := int64(id)
-	field, err := controller.Interactor.GatewayDeviceByID(id64)
+	gatewayDevice, err := controller.Interactor.GatewayDeviceByID(id64)
 	if err != nil {
 		c.JSON(500, err)
 		return
 	}
-	c.JSON(200, field)
+	c.JSON(200, gatewayDevice)
 }

@@ -24,36 +24,36 @@ func NewSensingDeviceController(SQLHandler database.SQLHandler) *SensingDeviceCo
 	}
 }
 
-// Create is to create the field
+// Create is to create the sensing device
 func (controller *SensingDeviceController) Create(c Context) {
-	f := domain.SensingDevice{}
-	c.Bind(&f)
-	field, err := controller.Interactor.Add(f)
+	sd := domain.SensingDevice{}
+	c.Bind(&sd)
+	sensingDevice, err := controller.Interactor.Add(sd)
 	if err != nil {
 		c.JSON(500, err)
 		return
 	}
-	c.JSON(201, field)
+	c.JSON(201, sensingDevice)
 }
 
-// Index is to index the fields
+// Index is to index the sensing devices
 func (controller *SensingDeviceController) Index(c Context) {
-	fields, err := controller.Interactor.SensingDevices()
+	sensingDevices, err := controller.Interactor.SensingDevices()
 	if err != nil {
 		c.JSON(500, err)
 		return
 	}
-	c.JSON(200, fields)
+	c.JSON(200, sensingDevices)
 }
 
-// Show is to show the field
+// Show is to show the sensing device
 func (controller *SensingDeviceController) Show(c Context) {
 	id, _ := strconv.Atoi(c.Param("id"))
 	id64 := int64(id)
-	field, err := controller.Interactor.SensingDeviceByID(id64)
+	sensingDevice, err := controller.Interactor.SensingDeviceByID(id64)
 	if err != nil {
 		c.JSON(500, err)
 		return
 	}
-	c.JSON(200, field)
+	c.JSON(200, sensingDevice)
 }

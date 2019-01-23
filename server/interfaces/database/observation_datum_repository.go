@@ -11,7 +11,7 @@ type ObservationDatumRepository struct {
 	SQLHandler
 }
 
-// Store insert values into ObservationDatum table
+// Store insert values into observation data table
 func (repo *ObservationDatumRepository) Store(od domain.ObservationDatum) (id int64, err error) {
 	result, err := repo.Execute(
 		`INSERT INTO observation_data (

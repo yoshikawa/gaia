@@ -11,7 +11,7 @@ type PlantCategoryRepository struct {
 	SQLHandler
 }
 
-// Store insert values into field table
+// Store insert values into plant category table
 func (repo *PlantCategoryRepository) Store(plantCategory domain.PlantCategory) (id int64, err error) {
 	result, err := repo.Execute(
 		`INSERT INTO plant_categories (
@@ -47,7 +47,7 @@ func (repo *PlantCategoryRepository) Store(plantCategory domain.PlantCategory) (
 	return
 }
 
-// FindByID find the field by id
+// FindByID find the plant category by id
 func (repo *PlantCategoryRepository) FindByID(identifier int64) (plantCategory domain.PlantCategory, err error) {
 	row, err := repo.Query("SELECT * FROM plant_categories WHERE id = ?", identifier)
 	defer row.Close()
@@ -79,7 +79,7 @@ func (repo *PlantCategoryRepository) FindByID(identifier int64) (plantCategory d
 	return
 }
 
-// FindAll find all fields
+// FindAll find all plant categories
 func (repo *PlantCategoryRepository) FindAll() (plantCategories domain.PlantCategories, err error) {
 	rows, err := repo.Query("SELECT id, organization_id, name, area, created_at, updated_at, deleted FROM fileds")
 	defer rows.Close()

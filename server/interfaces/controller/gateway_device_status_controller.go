@@ -24,36 +24,36 @@ func NewGatewayDeviceStatusController(SQLHandler database.SQLHandler) *GatewayDe
 	}
 }
 
-// Create is to create the field
+// Create is to create the gateway device status
 func (controller *GatewayDeviceStatusController) Create(c Context) {
-	f := domain.GatewayDeviceStatus{}
-	c.Bind(&f)
-	field, err := controller.Interactor.Add(f)
+	gds := domain.GatewayDeviceStatus{}
+	c.Bind(&gds)
+	gatewayDeviceStatus, err := controller.Interactor.Add(gds)
 	if err != nil {
 		c.JSON(500, err)
 		return
 	}
-	c.JSON(201, field)
+	c.JSON(201, gatewayDeviceStatus)
 }
 
-// Index is to index the fields
+// Index is to index the gateway device statuses
 func (controller *GatewayDeviceStatusController) Index(c Context) {
-	fields, err := controller.Interactor.GatewayDeviceStatuses()
+	gatewayDeviceStatuses, err := controller.Interactor.GatewayDeviceStatuses()
 	if err != nil {
 		c.JSON(500, err)
 		return
 	}
-	c.JSON(200, fields)
+	c.JSON(200, gatewayDeviceStatuses)
 }
 
-// Show is to show the field
+// Show is to show the gateway device status
 func (controller *GatewayDeviceStatusController) Show(c Context) {
 	id, _ := strconv.Atoi(c.Param("id"))
 	id64 := int64(id)
-	field, err := controller.Interactor.GatewayDeviceStatusByID(id64)
+	gatewayDeviceStatus, err := controller.Interactor.GatewayDeviceStatusByID(id64)
 	if err != nil {
 		c.JSON(500, err)
 		return
 	}
-	c.JSON(200, field)
+	c.JSON(200, gatewayDeviceStatus)
 }

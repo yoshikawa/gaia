@@ -11,7 +11,7 @@ type SensingDeviceStatusRepository struct {
 	SQLHandler
 }
 
-// Store insert values into field table
+// Store insert values into sensing device status table
 func (repo *SensingDeviceStatusRepository) Store(sensingDeviceStatus domain.SensingDeviceStatus) (id int64, err error) {
 	result, err := repo.Execute(
 		`INSERT INTO sensing_device_status (
@@ -41,7 +41,7 @@ func (repo *SensingDeviceStatusRepository) Store(sensingDeviceStatus domain.Sens
 	return
 }
 
-// FindByID find the field by id
+// FindByID find the sensing device status by id
 func (repo *SensingDeviceStatusRepository) FindByID(identifier int64) (sensingDeviceStatus domain.SensingDeviceStatus, err error) {
 	row, err := repo.Query("SELECT * FROM sensing_device_status WHERE id = ?", identifier)
 	defer row.Close()
@@ -69,7 +69,7 @@ func (repo *SensingDeviceStatusRepository) FindByID(identifier int64) (sensingDe
 	return
 }
 
-// FindAll find all fields
+// FindAll find all sensing device statuses
 func (repo *SensingDeviceStatusRepository) FindAll() (sensingDeviceStatuses domain.SensingDeviceStatuses, err error) {
 	rows, err := repo.Query("SELECT * FROM sensing_device_status")
 	defer rows.Close()
