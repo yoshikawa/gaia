@@ -1,0 +1,379 @@
+// @import "color";
+
+// .sidebar_wrap {
+//     display: inline-block;
+//     position: fixed;
+//     width :100%;
+//     padding: 15px;
+//     top: 0;
+//     left: 0;
+//     .wrap_menu_check {/* チェックボックスを隠す */
+//         display: none;
+//     }
+
+//     /* ▽▽メニューボタン▽▽ */
+//     .sidebar_btn {
+//         position: relative;
+//         width: 30px;
+//         height: 30px;
+//         cursor: pointer;
+//         display: block;
+//         float: left;
+//         z-index: 999;
+//     }
+//     .sidebar_btn::before {
+//         -webkit-box-shadow: #fff 0 12px 0;
+//         box-shadow: #fff 0 12px 0;
+//     }
+//     .sidebar_btn::after {
+//         bottom: 0;
+//     }
+//     .sidebar_btn::before, .sidebar_btn::after {
+//         width: 30px;
+//         height: 6px;
+//         background: #fff;
+//         display: block;
+//         content: '';
+//         position: absolute;
+//         -webkit-transition: -webkit-box-shadow 0.2s linear, -webkit-transform 0.2s 0.2s;
+//         transition: box-shadow 0.2s linear, transform 0.2s 0.2s;
+//     }
+//     /* △△メニューボタン△△ */
+
+//     .wrap_menu_wrap {
+//         width :80%;
+//         height :10000px;
+//         background: #eee;
+//         position: absolute;
+//         left: -100%;
+//         top: 60px;
+//         -webkit-transition: left 0.4s;
+//         transition: left 0.4s;
+//     }
+
+
+//       /* ▽▽開閉時のアニメーション▽▽ */
+//   .wrap_menu_check:checked ~ .hm_title {
+//     opacity: 1;
+//     -webkit-transform: none;
+//     -ms-transform: none;
+//     transform: none;
+// }
+// .wrap_menu_check:checked ~ .sidebar_btn::before {
+//     -webkit-box-shadow: transparent 0 0 0;
+//     box-shadow: transparent 0 0 0;
+//     -webkit-transform: rotate(45deg) translate3d(6px, 11px, 0);
+//     transform: rotate(45deg) translate3d(6px, 11px, 0);
+// }
+// .wrap_menu_check:checked ~ .sidebar_btn::after {
+//     -webkit-transform: rotate(-45deg) translate3d(6px, -11px, 0);
+//     transform: rotate(-45deg) translate3d(6px, -11px, 0);
+// }
+// .wrap_menu_check:checked ~ .wrap_menu_wrap {
+//     left: 0;
+//     top: 60px;
+// }
+
+
+// /* △△開閉時のアニメーション△△ */
+
+   
+// /* ▽▽メニュー内のリストスタイル▽▽ */
+// .hm_list {
+//     list-style-type: none;
+//     // margin: 50px 0 0;
+//     padding: 0;
+// }
+// .hm_list li a {
+//     color: #000;
+//     display: block;
+//     overflow: hidden;
+//     padding: 8px 22px;
+//     position: relative;
+//     text-decoration: none;
+//     z-index: 1;
+// }
+// .hm_list li a::before {/* aタグマウスオーバー時の背景 */
+//     background: #eee;
+//     content: '';
+//     position: absolute;
+//     top: 0;
+//     right: 0;
+//     bottom: 100%;
+//     left: 0;
+//     -webkit-transition: bottom 0.4s;
+//     transition: bottom 0.4s;
+//     z-index: -1;
+// }   
+// .hm_list li a:hover::before {
+//     bottom: 0;
+// }
+// .hm_list li a:hover::after {
+//     opacity: 0.5;
+//     -webkit-transform: translate3d(0, 0, 0);
+//     transform: translate3d(0, 0, 0);
+// }
+
+
+
+
+//     .nav-drapdown {
+//         font-size: 20px;
+//         border-bottom: 1px solid #606060;
+//         padding: 14px 0  14px 24px;
+//     }
+//     a {
+//         color: #000;
+//         text-decoration: none;
+//     }
+//     .drapdown-menu {
+//         font-size: 20px;
+//     }
+//     .nav-drapdown > label{
+//         font-size: 120%;
+//         display: inline;
+//         cursor: pointer;
+//     }
+//     .nav-drapdown input[type="checkbox"].on-off {
+//         display: none;
+//     }
+//     .nav-drapdown input[type="checkbox"].on-off +div{
+//         display: block;
+//     }
+//     .nav-drapdown input[type="checkbox"].on-off:checked +div{
+//         display: none;
+//     }
+//     .drapdown-children {
+//         li {
+//             padding: 12px 0 12px 12px;
+//         }
+//     }
+//     .menu-childrenbox {
+//         color: #000;
+//         padding-right: 12px; 
+//         float: right;
+//     }
+
+    
+//     /*  ----------------------------------------------------------------   */ 
+
+// }
+
+.main {
+	/* contents */
+	.contents {
+		display: table;
+		width: 100%;
+		height: 100vh;
+		margin-top: 30px;
+		padding: 0;
+		-webkit-transition-duration: .5s;
+		transition-duration: .5s;
+	}
+	/* drawer menu */
+	.drawer-menu {
+		box-sizing: border-box;
+		position: fixed;
+		top: 60px;
+		left: 0;
+		width: 300px;
+		height: 100%;
+		// padding: 120px 0;
+		background: #eee;
+		-webkit-transition-duration: .5s;
+		transition-duration: .5s;
+		-webkit-transform-origin: right center;
+		-ms-transform-origin: right center;
+		transform-origin: right center;
+		transform: translateX(-300px); 
+		opacity: 1;
+		z-index: -10;
+	}
+	.drawer-menu li {
+		text-align: center;
+	}
+	.drawer-menu li a {
+		display: block;
+		height: 50px;
+		line-height: 50px;
+		font-size: 14px;	
+		color: #000;
+	}
+	.drawer-menu li a:hover {
+		color: #1a1e24;
+		background: #fff;
+	}
+	/* checkbox */
+	.check {
+		display: none;
+	}
+	/* menu button - label tag */
+	.menu-btn {
+		position: fixed;
+		display: block;
+		top: 10px;
+		left: 24px;
+		display: block;
+		width: 40px;
+		height: 40px;
+		font-size: 10px;
+		text-align: center;
+		cursor: pointer;
+		z-index: 3;
+	}
+	.bar {
+		position: absolute;
+		top: 0;
+		left: 0;
+		display: block;
+		width: 40px;
+		height: 1px;
+		background: #fff;
+		-webkit-transition: all .5s;
+		transition: all .5s;
+		-webkit-transform-origin: left top;
+		-ms-transform-origin: left top;
+		transform-origin: left top;
+	}
+	.bar.middle {
+		top: 15px;
+		opacity: 1;
+	}
+
+	.bar.bottom {
+		top: 30px;
+		-webkit-transform-origin: left bottom;
+		-ms-transform-origin: left bottom;
+		transform-origin: left bottom;
+	}
+	.menu-btn:hover .bar {
+		background: #fff;
+	}
+
+	.menu-btn:hover {
+		color: #fff;
+	}
+
+	.close-menu {
+		position: fixed;
+		top: 60px;
+		left: 300px;
+		width: 100%;
+		height: 100vh;
+		visibility: hidden;
+		opacity: 0;
+	}
+
+	/* checked */
+	.check:checked ~ .drawer-menu {
+		-webkit-transform: none;
+		-ms-transform: none;
+		transform: none;
+		z-index: -10;
+	}
+
+	.check:checked ~ .contents {
+		-webkit-transition-delay: 0s;
+		transition-delay: 0s;
+		-webkit-transform: translateX(300px);
+		-ms-transform: translateX(300px);
+		transform: translateX(300px);
+	}
+
+	.check:checked ~ .menu-btn {
+		opacity: 1;
+	}
+
+	.check:checked ~ .menu-btn .bar.top {
+		width: 56px;
+		-webkit-transform: rotate(45deg);
+		-ms-transform: rotate(45deg);
+		transform: rotate(45deg);
+	}
+
+	.check:checked ~ .menu-btn .bar.middle {
+		opacity: 0;
+	}
+
+	.check:checked ~ .menu-btn .bar.bottom {
+		width: 56px;
+		top: 40px;
+		-webkit-transform: rotate(-45deg);
+		-ms-transform: rotate(-45deg);
+		transform: rotate(-45deg);
+	}
+	.nav-drapdown {
+		font-size: 20px;
+		border-bottom: 1px solid #606060;
+		padding: 14px 0  14px 24px;
+	}
+	a {
+		color: #000;
+		text-decoration: none;
+	}
+	.drapdown-menu {
+		font-size: 20px;
+	}
+	.nav-drapdown > label{
+		font-size: 1.2em;
+		display: inline;
+		cursor: pointer;
+	}
+	.nav-drapdown input[type="checkbox"].on-off {
+		display: none;
+	}
+	.nav-drapdown input[type="checkbox"].on-off +div{
+		display: block;
+	}
+	.nav-drapdown input[type="checkbox"].on-off:checked +div{
+		display: none;
+	}
+	.drapdown-children li {
+		padding: 12px 0 12px 12px;
+	}
+	.menu-childrenbox {
+		color: #000;
+		padding-right: 12px; 
+		float: right;
+	}
+
+@media screen and (min-width: 600px) {
+	// .contents {
+	// 	margin-top: 30px;
+	// }
+    .wrap_menu_wrap {
+        width: 400px;
+	}
+	/* drawer menu */
+	.drawer-menu {
+		width: 400px;
+		transform: translateX(-400px); 
+
+	}
+	.check:checked ~ .contents {
+		-webkit-transform: translateX(400px);
+		-ms-transform: translateX(400px);
+		transform: translateX(400px);
+	}
+}
+
+@media screen and (min-width: 960px) {
+	.contents {
+		margin-top: 0px;
+		margin: 30px;
+	} 
+    .wrap_menu_wrap {
+        width :300px;
+	}
+	.check:checked ~ .contents {
+		-webkit-transform: translateX(300px);
+		-ms-transform: translateX(300px);
+		transform: translateX(300px);
+	}
+
+	.menu-btn {
+		width: 40px;
+		height: 40px;
+	}
+}
+}
