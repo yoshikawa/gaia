@@ -1,64 +1,52 @@
-@import "_color.scss";
+@import "color";
   
 .container-users {
-    .users-div {
+    width: 90%;
+    .users-table {
         width: 100%;
         overflow: auto;
     }
-    .users-table {
+    .table-box {
         width: 100%;
         border-collapse: collapse;
         thead {
-            background-color: #606060;
-            a {
-                color: #fff;
-                padding: 6px;
-                text-decoration: none;
-            }
+            background-color: $thead-bg;
+                // a {
+                //     color: #fff;
+                //     padding: 6px;
+                //     text-decoration: none;
+                // }
         }
         tbody {
             background-color: #fff;
             tr:nth-child(even) {
-                background-color: #fff;
-            }
-            tr:nth-child(odd){
-                background: #f0f0f0;
-            }
-            a {
-                color: #000;
-                padding: 6px;
-                text-decoration: none;
-            }
-            a:hover {
-                color: #000;
-            }
-            a:visited {
-                color: #000;
-            }
+            background-color: $tbody-bg;
+        }
+        tr:nth-child(odd){
+            background: #fff;
+        }
+                // a {
+                //     color: #000;
+                //     padding: 6px;
+                //     text-decoration: none;
+                // }
+                // a:hover {
+                //     color: #000;
+                // }
+                // a:visited {
+                //     color: #000;
+                // }
         }
         th,td {
-            border: solid 1px $gray;
+            border: solid 1px $thtd-bg;
             padding: 12px;
             text-align: center;
             vertical-align: middle;
             white-space: nowrap;
         }
     }
-
-    
-    .paginator {
-        .pagination {
-            padding-top: 8px;
-            text-align: right;
-            li {
-                display: inline;
-            }
-        }
-        p {
-            margin-top: 10px;
-        }
-    }
 }
+
 
 
 @media screen and (min-width: 480px) {
@@ -70,5 +58,11 @@
 @media screen and (min-width: 600px) {
     .users-div {
         width: 550px;
+    }
+}
+
+@media screen and (min-width: 600px) {
+    .container-users {
+        margin: 0;
     }
 }
