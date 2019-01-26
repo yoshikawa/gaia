@@ -8,15 +8,22 @@ Geometry App In Agriculture
 
 Geometry App In Agriculture
 
+Open type field sensing platform
+
+REST API using HTTP protocol
+
+Establish reusability of data without relying on vendor proprietary data format.
+
 ## Requirements
 
 | 言語/FW        | Version |
 | :------------- | ------: |
-| go             |  1.11.2 |
-| docker         | 18.09.0 |
+| go             |  1.11.5 |
+| docker         | 18.09.1 |
 | docker-compose |  1.23.2 |
-| react          |  16.6.3 |
-| mysql          |  8.0.12 |
+| node           |  11.8.0 |
+| react          |  16.7.0 |
+| mysql          |  8.0.14 |
 
 ## Usage
 
@@ -45,6 +52,8 @@ access `localhost:8081`
 ## Architecture
 
 The architecture of the project follows the principles of Clean Architecture.
+
+This project needs to keep expanding constantly.
 
 ## Licence
 
