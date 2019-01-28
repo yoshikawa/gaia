@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
-  entry: path.resolve(__dirname, "./src/js/main.tsx"),
+  entry: path.resolve(__dirname, "./src/main.tsx"),
   output: {
     path: path.resolve(__dirname, "./dist"),
     filename: "./js/main.js"
@@ -13,43 +13,43 @@ module.exports = {
       template: "src/index.html"
     }),
     new HtmlWebpackPlugin({
-      filename: 'login.html',
+      filename: "login.html",
       template: "src/view/login.html"
     }),
     new HtmlWebpackPlugin({
-      filename: 'users/index.html',
+      filename: "users/index.html",
       template: "src/view/users/index.html"
     }),
     new HtmlWebpackPlugin({
-      filename: 'users/add.html',
+      filename: "users/add.html",
       template: "src/view/users/add.html"
     }),
     new HtmlWebpackPlugin({
-      filename: 'users/edit.html',
+      filename: "users/edit.html",
       template: "src/view/users/edit.html"
     }),
     new HtmlWebpackPlugin({
-      filename: 'users/view.html',
+      filename: "users/view.html",
       template: "src/view/users/view.html"
     }),
     new HtmlWebpackPlugin({
-      filename: 'units/index.html',
+      filename: "units/index.html",
       template: "src/view/units/index.html"
     }),
     new HtmlWebpackPlugin({
-      filename: 'units/add.html',
+      filename: "units/add.html",
       template: "src/view/units/add.html"
     }),
     new HtmlWebpackPlugin({
-      filename: 'units/edit.html',
+      filename: "units/edit.html",
       template: "src/view/units/edit.html"
     }),
     new HtmlWebpackPlugin({
-      filename: 'units/view.html',
+      filename: "units/view.html",
       template: "src/view/units/view.html"
     }),
     new MiniCssExtractPlugin({
-      filename: "./css/app.css"
+      filename: "./stylesheets/style.scss"
     })
   ],
   resolve: {
