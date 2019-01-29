@@ -8,6 +8,12 @@ Geometry App In Agriculture
 
 農業におけるジオメトリアプリ
 
+オープン型圃場センシングプラットフォーム
+
+HTTPプロトコルを用いたREST API
+
+ベンダ独自のデータ・フォーマットに頼らず, データの再利用性を確立する.
+
 ## Requirements(必要条件)
 
 このリポジトリを開発する時には,Dockerという仮想環境を用意します.
@@ -22,11 +28,12 @@ brew cask install docker
 
 | 言語/FW        | Version |
 | :------------- | ------: |
-| go             |  1.11.2 |
-| docker         | 18.09.0 |
+| go             |  1.11.5 |
+| docker         | 18.09.1 |
 | docker-compose |  1.23.2 |
-| react          |  16.6.3 |
-| mysql          |  8.0.12 |
+| node           |  11.8.0 |
+| react          |  16.7.0 |
+| mysql          |  8.0.14 |
 
 ## Usage(使い方)
 
@@ -51,6 +58,8 @@ git clone git@github.com:Pluslab/gaia.git
 ## Architecture(アーキテクチャ設計)
 
 このプロジェクトのアーキテクチャは、クリーンアーキテクチャの原則に従います。
+
+このプロジェクトは拡張性を常に保ち続ける必要があります.
 
 ## Licence(ライセンス)
 
