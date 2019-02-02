@@ -2,6 +2,7 @@ package infrastructure
 
 import (
 	"github.com/Pluslab/gaia/server/interfaces/controller"
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/contrib/sessions"
 	"github.com/gin-gonic/gin"
 )
@@ -11,6 +12,14 @@ var Router *gin.Engine
 
 func init() {
 	router := gin.Default()
+
+	// - No origin allowed by default
+	// - GET,POST, PUT, HEAD methods
+	// - Credentials share disabled
+	// - Preflight requests cached for 12 hours
+	config := cors.DefaultConfig()
+	config.AllowOrigins = []string{"http://localhost:8081"}
+	router.Use(cors.New(config))
 
 	store := sessions.NewCookieStore([]byte("secret"))
 	// SessionNameは任意
