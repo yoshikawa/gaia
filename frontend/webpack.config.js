@@ -3,10 +3,12 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
-  entry: path.resolve(__dirname, "./src/main.tsx"),
+  entry: {
+    index: path.resolve(__dirname, "./src/index.tsx")
+  },
   output: {
     path: path.resolve(__dirname, "./dist"),
-    filename: "./js/main.js"
+    filename: "./js/[name].js"
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -56,7 +58,8 @@ module.exports = {
     extensions: [
       ".ts", // for ts-loader
       ".tsx", // for ts-loader
-      ".js"
+      ".js",
+      ".jsx"
     ]
   },
   module: {
