@@ -4,12 +4,12 @@ import { bindActionCreators } from "redux";
 import UserContent from "../../components/users/UserContent";
 
 interface MyStateProps {
-  userByid: any;
+  userByID: any;
 }
 
 function mapStateToProps(state: MyStateProps) {
   return {
-    userByid: state.userByid
+    userByID: state.userByID
   };
 }
 

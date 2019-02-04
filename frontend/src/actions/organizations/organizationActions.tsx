@@ -1,0 +1,15 @@
+import { FETCH_ORGANIZATIONS } from "../../constants/organizations";
+import FetchOrganization from "../../services/application-Services/FetchOrganization";
+
+export const fetchOrganization = () => (dispatch: any) => {
+  const api = new FetchOrganization();
+  api
+    .fetchApi()
+    .then(response => response.json())
+    .then(organization => {
+      dispatch({
+        type: FETCH_ORGANIZATIONS,
+        payload: organization
+      });
+    });
+};
