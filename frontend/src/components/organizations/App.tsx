@@ -3,8 +3,8 @@ import { Component } from "react";
 import { Route, HashRouter, Switch } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "../../store/store";
-import UserContainer from "../../container/users/allUserContainer";
-import DescriptionContainer from "../../container/users/descriptionContainer";
+import OrganizationContainer from "../../container/organizations/allOrganizationContainer";
+import DescriptionContainer from "../../container/organizations/descriptionContainer";
 
 class App extends Component {
   render() {
@@ -14,9 +14,13 @@ class App extends Component {
           <HashRouter>
             <div>
               <Switch>
-                <Route path="/users" exact component={UserContainer} />
                 <Route
-                  path="/users/:id"
+                  path="/organizations"
+                  exact
+                  component={OrganizationContainer}
+                />
+                <Route
+                  path="/organizations/:id"
                   exact
                   component={DescriptionContainer}
                 />

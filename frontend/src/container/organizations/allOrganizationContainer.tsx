@@ -1,23 +1,22 @@
 import { connect } from "react-redux";
-import { fetchUserByID } from "../../actions/users/userByIDAction";
+import { fetchUser } from "../../actions/users/userActions";
 import { bindActionCreators } from "redux";
-import UserContent from "../../components/users/UserContent";
-
+import UserHome from "../../components/users/UserHome";
 interface MyStateProps {
-  userByID: any;
+  user: Array<any>;
 }
 
 function mapStateToProps(state: MyStateProps) {
   return {
-    userByid: state.userByID
+    user: state.user
   };
 }
 
 function matchDispatchToProps(dispatch: any) {
-  return bindActionCreators({ fetchUserByID: fetchUserByID }, dispatch);
+  return bindActionCreators({ fetchUser: fetchUser }, dispatch);
 }
 
 export default connect(
   mapStateToProps,
   matchDispatchToProps
-)(UserContent) as any;
+)(UserHome);

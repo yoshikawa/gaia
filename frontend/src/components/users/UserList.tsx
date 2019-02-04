@@ -11,7 +11,7 @@ class UserList extends React.Component<Props> {
         {(this.props.userData || []).map((userData: any, k: number) => {
           return (
             <li key={k}>
-              <h6>{userData.title}</h6>
+              <h6>{userData.name}</h6>
             </li>
           );
         })}

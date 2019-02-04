@@ -5,12 +5,12 @@ import UserList from "./UserList";
 export interface Props {
   fetchUser: () => any;
   user: any;
+  id: number;
   organizationID: number;
   name: string;
   email: string;
   country: string;
   administrator: boolean;
-  k: number;
 }
 class UserHome extends React.Component<Props> {
   componentWillMount() {
@@ -26,7 +26,7 @@ class UserHome extends React.Component<Props> {
       <div className="container">
         <div className="side-bar">
           <div className="shortLine">
-            <h4>shortLines..</h4>
+            <h4>User Name</h4>
           </div>
           <div className="UserList">
             <UserList userData={userData} />
@@ -35,13 +35,14 @@ class UserHome extends React.Component<Props> {
 
         <div className="tiles-container">
           <div className="user-menu">
-            <h3>Mine User HeadLines..</h3>
+            <h3>User list</h3>
           </div>
           {(userData || []).map((userData: any, index: number) => {
             return (
               <div key={index}>
                 <UserTile
-                  k={index}
+                  index={index}
+                  id={userData.id}
                   organizationID={userData.organizationID}
                   name={userData.name}
                   email={userData.email}
