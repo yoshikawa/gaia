@@ -13,7 +13,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      chunks: ["organization"],
+      chunks: ["index"],
       filename: "index.html",
       template: "src/index.html"
     }),
