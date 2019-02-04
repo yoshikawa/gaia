@@ -3,7 +3,7 @@ const initialState = {
   items: []
 };
 
-const newsReducer = (state = initialState, action: any) => {
+const userReducer = (state = initialState, action: any) => {
   switch (action.type) {
     case FETCH_USERS:
       return (Object as any).assign({}, state, {
@@ -13,4 +13,4 @@ const newsReducer = (state = initialState, action: any) => {
       return state;
   }
 };
-export default newsReducer;
+export default userReducer;

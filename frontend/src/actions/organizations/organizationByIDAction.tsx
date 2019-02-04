@@ -1,15 +1,15 @@
-import { FETCH_USERS_BYID } from "../../constants/users";
-import FetchUser from "../../services/application-Services/FetchUser";
+import { FETCH_ORGANIZATIONS_BYID } from "../../constants/organizations";
+import FetchOrganization from "../../services/application-Services/FetchOrganization";
 
-export const fetchUserByID = (id: any) => (dispatch: any) => {
-  const api = new FetchUser();
+export const fetchOrganizationByID = (id: any) => (dispatch: any) => {
+  const api = new FetchOrganization();
   api
     .fetchApi()
     .then(response => response.json())
-    .then(user => {
+    .then(organization => {
       dispatch({
-        type: FETCH_USERS_BYID,
-        payload: user
+        type: FETCH_ORGANIZATIONS_BYID,
+        payload: organization
       });
     });
 };

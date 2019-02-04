@@ -6,12 +6,9 @@ export interface Props {
   fetchOrganization: () => any;
   organization: any;
   id: number;
-  organizationID: number;
   name: string;
-  email: string;
-  country: string;
-  administrator: boolean;
 }
+
 class OrganizationHome extends React.Component<Props> {
   componentWillMount() {
     this.props.fetchOrganization();

@@ -10,7 +10,7 @@ export interface Props extends RouteComponentProps<any> {
 
 class OrganizationTile extends React.Component<Props> {
   gotoContent = () => {
-    this.props.history.push("/organizations/" + this.props.id);
+    this.props.history.push("/" + this.props.id);
   };
   render() {
     return (
@@ -18,7 +18,7 @@ class OrganizationTile extends React.Component<Props> {
         <div className="content">
           <div className="organization-header">
             <h4>{this.props.id}</h4>
-            <div className="source">name:{this.props.name}</div>
+            <div className="source">name: {this.props.name}</div>
           </div>
           <button onClick={() => this.gotoContent()}>readMore >></button>
         </div>

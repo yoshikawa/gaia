@@ -1,7 +1,7 @@
 import { FETCH_ORGANIZATIONS } from "../../constants/organizations";
-import FetchUser from "../../services/application-Services/FetchUser";
+import FetchOrganization from "../../services/application-Services/FetchOrganization";
 
-export const FetchOrganization = () => (dispatch: any) => {
+export const fetchOrganization = () => (dispatch: any) => {
   const api = new FetchOrganization();
   api
     .fetchApi()

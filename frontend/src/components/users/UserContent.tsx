@@ -43,13 +43,9 @@ class UserContent extends React.Component<Props, State> {
           closeHandler={this.closeHandler}
         />
         <div className="user-header">
-          <h2>{userData.title}</h2>
-          <h4>author : {userData.author}</h4>
-          <h4>published At : {userData.publishedAt}</h4>
+          <h2>{userData.id}</h2>
+          <h4>name : {userData.name}</h4>
           <div className="under-line" />
-        </div>
-        <div className="user-glance">
-          <h3>{userData.description}</h3>
         </div>
         <div className="view-more">
           <button onClick={() => this.modalHandler()}>

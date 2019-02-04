@@ -1,22 +1,22 @@
 import { connect } from "react-redux";
-import { fetchUser } from "../../actions/users/userActions";
+import { fetchOrganization } from "../../actions/organizations/organizationActions";
 import { bindActionCreators } from "redux";
-import UserHome from "../../components/users/UserHome";
+import OrganizationHome from "../../components/organizations/OrganizationHome";
 interface MyStateProps {
-  user: Array<any>;
+  organization: Array<any>;
 }
 
 function mapStateToProps(state: MyStateProps) {
   return {
-    user: state.user
+    organization: state.organization
   };
 }
 
 function matchDispatchToProps(dispatch: any) {
-  return bindActionCreators({ fetchUser: fetchUser }, dispatch);
+  return bindActionCreators({ fetchOrganization: fetchOrganization }, dispatch);
 }
 
 export default connect(
   mapStateToProps,
   matchDispatchToProps
-)(UserHome);
+)(OrganizationHome);

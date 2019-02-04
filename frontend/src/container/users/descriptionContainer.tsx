@@ -9,7 +9,7 @@ interface MyStateProps {
 
 function mapStateToProps(state: MyStateProps) {
   return {
-    userByid: state.userByID
+    userByID: state.userByID
   };
 }
 

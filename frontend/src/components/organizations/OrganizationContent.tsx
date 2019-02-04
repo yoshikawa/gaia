@@ -3,8 +3,8 @@ import { withRouter, RouteComponentProps } from "react-router-dom";
 import Modal from "./Modal";
 
 export interface Props extends RouteComponentProps<any> {
-  fetchUserByID: (id: number) => any;
-  userByID: any;
+  fetchOrganizationByID: (id: number) => any;
+  organizationByID: any;
   item: any;
 }
 
@@ -12,7 +12,7 @@ interface State {
   show: boolean;
 }
 
-class UserContent extends React.Component<Props, State> {
+class OrganizationContent extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
@@ -21,7 +21,7 @@ class UserContent extends React.Component<Props, State> {
   }
   componentWillMount() {
     const id = this.props.match.params.id;
-    this.props.fetchUserByID(id);
+    this.props.fetchOrganizationByID(id);
   }
   gotoHome = () => {
     this.props.history.push("/");
@@ -34,22 +34,17 @@ class UserContent extends React.Component<Props, State> {
   };
 
   render() {
-    const userData = this.props.userByID.item || [];
+    const organizationData = this.props.organizationByID.item || [];
     return (
-      <div className="user-content">
+      <div className="organization-content">
         <Modal
-          SourceUrl={userData.url}
+          SourceUrl={organizationData.url}
           Show={this.state.show}
           closeHandler={this.closeHandler}
         />
-        <div className="user-header">
-          <h2>{userData.title}</h2>
-          <h4>author : {userData.author}</h4>
-          <h4>published At : {userData.publishedAt}</h4>
+        <div className="organization-header">
+          <h2>{organizationData.name}</h2>
           <div className="under-line" />
-        </div>
-        <div className="user-glance">
-          <h3>{userData.description}</h3>
         </div>
         <div className="view-more">
           <button onClick={() => this.modalHandler()}>
@@ -64,4 +59,4 @@ class UserContent extends React.Component<Props, State> {
   }
 }
 
-export default withRouter(UserContent);
+export default withRouter(OrganizationContent);
