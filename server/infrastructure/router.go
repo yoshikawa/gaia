@@ -18,7 +18,7 @@ func init() {
 	// - Credentials share disabled
 	// - Preflight requests cached for 12 hours
 	config := cors.DefaultConfig()
-	config.AllowOrigins = []string{"http://localhost:8081"}
+	config.AllowOrigins = []string{"http://localhost:8081", "http://0.0.0.0:8081"}
 	router.Use(cors.New(config))
 
 	store := sessions.NewCookieStore([]byte("secret"))
