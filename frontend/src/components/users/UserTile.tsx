@@ -12,7 +12,7 @@ export interface Props extends RouteComponentProps<any> {
 }
 class UserTile extends React.Component<Props> {
   gotoContent = () => {
-    this.props.history.push("/" + this.props.id);
+    this.props.history.push("/users/" + this.props.id);
   };
   render() {
     return (

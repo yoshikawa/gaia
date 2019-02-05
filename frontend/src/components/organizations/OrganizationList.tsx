@@ -9,9 +9,9 @@ class OrganizationList extends React.Component<Props> {
     return (
       <ul>
         {(this.props.organizationData || []).map(
-          (organizationData: any, k: number) => {
+          (organizationData: any, index: number) => {
             return (
-              <li key={k}>
+              <li key={index}>
                 <h6>{organizationData.name}</h6>
               </li>
             );

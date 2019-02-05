@@ -11,6 +11,7 @@ export interface Props {
   email: string;
   country: string;
   administrator: boolean;
+  index: number;
 }
 class UserHome extends React.Component<Props> {
   componentWillMount() {

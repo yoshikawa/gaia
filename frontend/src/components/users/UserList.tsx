@@ -8,9 +8,9 @@ class UserList extends React.Component<Props> {
   render() {
     return (
       <ul>
-        {(this.props.userData || []).map((userData: any, k: number) => {
+        {(this.props.userData || []).map((userData: any, index: number) => {
           return (
-            <li key={k}>
+            <li key={index}>
               <h6>{userData.name}</h6>
             </li>
           );

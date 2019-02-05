@@ -7,6 +7,7 @@ export interface Props {
   organization: any;
   id: number;
   name: string;
+  index: number;
 }
 
 class OrganizationHome extends React.Component<Props> {

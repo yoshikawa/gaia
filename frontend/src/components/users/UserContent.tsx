@@ -24,10 +24,7 @@ class UserContent extends React.Component<Props, State> {
     this.props.fetchUserByID(id);
   }
   gotoHome = () => {
-    this.props.history.push("/");
-  };
-  modalHandler = () => {
-    this.setState({ show: true });
+    this.props.history.push("/users");
   };
   closeHandler = () => {
     this.setState({ show: false });
@@ -46,11 +43,6 @@ class UserContent extends React.Component<Props, State> {
           <h2>{userData.id}</h2>
           <h4>name : {userData.name}</h4>
           <div className="under-line" />
-        </div>
-        <div className="view-more">
-          <button onClick={() => this.modalHandler()}>
-            View More from Source
-          </button>
         </div>
         <div className="view-home">
           <button onClick={() => this.gotoHome()}>Home</button>
