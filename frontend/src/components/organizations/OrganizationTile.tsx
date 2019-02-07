@@ -3,7 +3,6 @@ import { NavLink, withRouter, RouteComponentProps } from "react-router-dom";
 // import * as PropTypes from 'prop-types';
 
 export interface Props extends RouteComponentProps<any> {
-  index: number;
   id: number;
   name: string;
 }

@@ -1,4 +1,4 @@
-import { LOADER_STATE } from "../../constants/organizations";
+import { LOADER_STATE } from "../constants/common";
 
 const initialState = {
   State: true
