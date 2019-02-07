@@ -1,9 +1,11 @@
 import { organizationURL } from "../../constants/urls";
 
-class FetchOrganization {
-  fetchApi = () => {
-    return fetch(organizationURL);
+export default class FetchOrganization {
+  fetchApi = (id: any) => {
+    if (id == null) {
+      return fetch(organizationURL);
+    } else {
+      return fetch(organizationURL + "/" + id);
+    }
   };
 }
-
-export default FetchOrganization;

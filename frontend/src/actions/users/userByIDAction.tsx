@@ -1,14 +1,15 @@
-import { FETCH_USERS_BYID } from "../../constants/users";
-import FetchUser from "../../services/application-Services/FetchUser";
+import { FETCH_USER_BYID } from "../../constants/users";
+import FetchUser from "../../services/application-services/FetchUser";
 
 export const fetchUserByID = (id: any) => (dispatch: any) => {
-  const api = new FetchUser();
+  var api = new FetchUser();
+
   api
-    .fetchApi()
+    .fetchApi(id)
     .then(response => response.json())
     .then(user => {
       dispatch({
-        type: FETCH_USERS_BYID,
+        type: FETCH_USER_BYID,
         payload: user
       });
     });

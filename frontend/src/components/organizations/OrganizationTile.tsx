@@ -10,8 +10,9 @@ export interface Props extends RouteComponentProps<any> {
 
 class OrganizationTile extends React.Component<Props> {
   gotoContent = () => {
-    this.props.history.push("/" + this.props.id);
+    this.props.history.push("/organizations/" + this.props.id);
   };
+
   render() {
     return (
       <div className="organization-container">

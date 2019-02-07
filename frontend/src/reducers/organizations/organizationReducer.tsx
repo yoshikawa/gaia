@@ -1,4 +1,5 @@
 import { FETCH_ORGANIZATIONS } from "../../constants/organizations";
+
 const initialState = {
   items: []
 };
@@ -13,4 +14,5 @@ const organizationReducer = (state = initialState, action: any) => {
       return state;
   }
 };
+
 export default organizationReducer;

@@ -34,7 +34,7 @@ func init() {
 	gatewayDeviceStatusController := controller.NewGatewayDeviceStatusController(NewSQLHandler())
 	individualController := controller.NewIndividualController(NewSQLHandler())
 	observablePropertyController := controller.NewObservablePropertyController(NewSQLHandler())
-	observableDatumController := controller.NewObservationDatumController(NewSQLHandler())
+	observationDatumController := controller.NewObservationDatumController(NewSQLHandler())
 	observationPositionController := controller.NewObservationPositionController(NewSQLHandler())
 	plantCategoryController := controller.NewPlantCategoryController(NewSQLHandler())
 	plantController := controller.NewPlantController(NewSQLHandler())
@@ -77,10 +77,10 @@ func init() {
 	router.POST("/observable-properties", func(c *gin.Context) { observablePropertyController.Create(c) })
 	router.GET("/observable-properties", func(c *gin.Context) { observablePropertyController.Index(c) })
 	router.GET("/observable-properties/:id", func(c *gin.Context) { observablePropertyController.Show(c) })
-	// observable datum api route
-	router.POST("/observable-data", func(c *gin.Context) { observableDatumController.Create(c) })
-	router.GET("/observable-data", func(c *gin.Context) { observableDatumController.Index(c) })
-	router.GET("/observable-data/:id", func(c *gin.Context) { observableDatumController.Show(c) })
+	// observation datum api route
+	router.POST("/observation-data", func(c *gin.Context) { observationDatumController.Create(c) })
+	router.GET("/observation-data", func(c *gin.Context) { observationDatumController.Index(c) })
+	router.GET("/observation-data/:id", func(c *gin.Context) { observationDatumController.Show(c) })
 	// /observation position api route
 	router.POST("/observation-positions", func(c *gin.Context) { observationPositionController.Create(c) })
 	router.GET("/observation-positions", func(c *gin.Context) { observationPositionController.Index(c) })

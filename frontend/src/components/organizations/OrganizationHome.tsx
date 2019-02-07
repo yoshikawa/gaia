@@ -9,7 +9,6 @@ export interface Props {
   name: string;
   index: number;
 }
-
 class OrganizationHome extends React.Component<Props> {
   componentWillMount() {
     this.props.fetchOrganization();
@@ -20,6 +19,7 @@ class OrganizationHome extends React.Component<Props> {
 
   render() {
     let organizationData = this.props.organization.items || [];
+
     return (
       <div className="container">
         <div className="side-bar">

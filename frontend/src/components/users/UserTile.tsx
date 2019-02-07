@@ -14,6 +14,7 @@ class UserTile extends React.Component<Props> {
   gotoContent = () => {
     this.props.history.push("/users/" + this.props.id);
   };
+
   render() {
     return (
       <div className="user-container">
