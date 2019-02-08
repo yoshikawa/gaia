@@ -1,4 +1,5 @@
 import { FETCH_USERS } from "../../constants/users";
+
 const initialState = {
   items: []
 };
@@ -13,4 +14,5 @@ const userReducer = (state = initialState, action: any) => {
       return state;
   }
 };
+
 export default userReducer;

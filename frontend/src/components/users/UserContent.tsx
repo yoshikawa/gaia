@@ -19,13 +19,20 @@ class UserContent extends React.Component<Props, State> {
       show: false
     };
   }
+
   componentWillMount() {
     const id = this.props.match.params.id;
     this.props.fetchUserByID(id);
   }
+
   gotoHome = () => {
     this.props.history.push("/users");
   };
+
+  modalHandler = () => {
+    this.setState({ show: true });
+  };
+
   closeHandler = () => {
     this.setState({ show: false });
   };

@@ -10,8 +10,10 @@ class Modal extends React.Component<Props> {
   closeHandler = () => {
     this.props.closeHandler();
   };
+
   render() {
     const show = this.props.Show;
+
     return (
       <div className="modal" style={{ display: show ? "block" : "none" }}>
         <div className="modal-content">

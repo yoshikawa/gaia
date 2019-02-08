@@ -1,4 +1,5 @@
-import { LOADER_STATE } from "../../constants/users";
+import { LOADER_STATE } from "../constants/common";
+
 const initialState = {
   State: true
 };
@@ -13,4 +14,5 @@ const loaderReducer = (state = initialState, action: any) => {
       return state;
   }
 };
+
 export default loaderReducer;

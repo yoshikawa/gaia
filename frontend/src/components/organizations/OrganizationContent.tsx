@@ -19,22 +19,23 @@ class OrganizationContent extends React.Component<Props, State> {
       show: false
     };
   }
+
   componentWillMount() {
     const id = this.props.match.params.id;
     this.props.fetchOrganizationByID(id);
   }
+
   gotoHome = () => {
-    this.props.history.push("/");
+    this.props.history.push("/organizations");
   };
-  modalHandler = () => {
-    this.setState({ show: true });
-  };
+
   closeHandler = () => {
     this.setState({ show: false });
   };
 
   render() {
     const organizationData = this.props.organizationByID.item || [];
+
     return (
       <div className="organization-content">
         <Modal
@@ -45,11 +46,6 @@ class OrganizationContent extends React.Component<Props, State> {
         <div className="organization-header">
           <h2>{organizationData.name}</h2>
           <div className="under-line" />
-        </div>
-        <div className="view-more">
-          <button onClick={() => this.modalHandler()}>
-            View More from Source
-          </button>
         </div>
         <div className="view-home">
           <button onClick={() => this.gotoHome()}>Home</button>

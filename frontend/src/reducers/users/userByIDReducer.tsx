@@ -1,10 +1,12 @@
-import { FETCH_USERS_BYID } from "../../constants/users";
+import { FETCH_USER_BYID } from "../../constants/users";
+
 const initialState = {
   item: {}
 };
+
 const userByidReducer = (state = initialState, action: any) => {
   switch (action.type) {
-    case FETCH_USERS_BYID:
+    case FETCH_USER_BYID:
       return (Object as any).assign({}, state, {
         item: action.payload
       });
@@ -12,4 +14,5 @@ const userByidReducer = (state = initialState, action: any) => {
       return state;
   }
 };
+
 export default userByidReducer;

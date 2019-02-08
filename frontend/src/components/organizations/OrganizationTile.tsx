@@ -3,15 +3,15 @@ import { NavLink, withRouter, RouteComponentProps } from "react-router-dom";
 // import * as PropTypes from 'prop-types';
 
 export interface Props extends RouteComponentProps<any> {
-  index: number;
   id: number;
   name: string;
 }
 
 class OrganizationTile extends React.Component<Props> {
   gotoContent = () => {
-    this.props.history.push("/" + this.props.id);
+    this.props.history.push("/organizations/" + this.props.id);
   };
+
   render() {
     return (
       <div className="organization-container">

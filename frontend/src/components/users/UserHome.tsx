@@ -1,6 +1,5 @@
 import * as React from "react";
 import UserTile from "./UserTile";
-import UserList from "./UserList";
 
 export interface Props {
   fetchUser: () => any;
@@ -23,17 +22,9 @@ class UserHome extends React.Component<Props> {
 
   render() {
     let userData = this.props.user.items || [];
+
     return (
       <div className="container">
-        <div className="side-bar">
-          <div className="shortLine">
-            <h4>User Name</h4>
-          </div>
-          <div className="UserList">
-            <UserList userData={userData} />
-          </div>
-        </div>
-
         <div className="tiles-container">
           <div className="user-menu">
             <h3>User list</h3>
