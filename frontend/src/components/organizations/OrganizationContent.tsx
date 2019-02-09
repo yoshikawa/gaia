@@ -1,6 +1,5 @@
 import * as React from "react";
 import { withRouter, RouteComponentProps } from "react-router-dom";
-import Modal from "./Modal";
 
 export interface Props extends RouteComponentProps<any> {
   fetchOrganizationByID: (id: number) => any;
@@ -8,16 +7,9 @@ export interface Props extends RouteComponentProps<any> {
   item: any;
 }
 
-interface State {
-  show: boolean;
-}
-
-class OrganizationContent extends React.Component<Props, State> {
+class OrganizationContent extends React.Component<Props> {
   constructor(props: Props) {
     super(props);
-    this.state = {
-      show: false
-    };
   }
 
   componentWillMount() {
@@ -29,20 +21,11 @@ class OrganizationContent extends React.Component<Props, State> {
     this.props.history.push("/organizations");
   };
 
-  closeHandler = () => {
-    this.setState({ show: false });
-  };
-
   render() {
     const organizationData = this.props.organizationByID.item || [];
 
     return (
       <div className="organization-content">
-        <Modal
-          SourceUrl={organizationData.url}
-          Show={this.state.show}
-          closeHandler={this.closeHandler}
-        />
         <div className="organization-header">
           <h2>{organizationData.name}</h2>
           <div className="under-line" />

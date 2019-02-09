@@ -1,6 +1,5 @@
 import * as React from "react";
 import { withRouter, RouteComponentProps } from "react-router-dom";
-import Modal from "./Modal";
 
 export interface Props extends RouteComponentProps<any> {
   fetchUserByID: (id: number) => any;
@@ -8,16 +7,9 @@ export interface Props extends RouteComponentProps<any> {
   item: any;
 }
 
-interface State {
-  show: boolean;
-}
-
-class UserContent extends React.Component<Props, State> {
+class UserContent extends React.Component<Props> {
   constructor(props: Props) {
     super(props);
-    this.state = {
-      show: false
-    };
   }
 
   componentWillMount() {
@@ -29,23 +21,10 @@ class UserContent extends React.Component<Props, State> {
     this.props.history.push("/users");
   };
 
-  modalHandler = () => {
-    this.setState({ show: true });
-  };
-
-  closeHandler = () => {
-    this.setState({ show: false });
-  };
-
   render() {
     const userData = this.props.userByID.item || [];
     return (
       <div className="user-content">
-        <Modal
-          SourceUrl={userData.url}
-          Show={this.state.show}
-          closeHandler={this.closeHandler}
-        />
         <div className="user-header">
           <h2>{userData.id}</h2>
           <h4>name : {userData.name}</h4>
