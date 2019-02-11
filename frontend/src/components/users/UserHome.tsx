@@ -1,6 +1,5 @@
 import * as React from "react";
 import UserTile from "./UserTile";
-
 export interface Props {
   fetchUser: () => any;
   user: any;
