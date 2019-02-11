@@ -4,7 +4,7 @@ const initialState = {
   item: {}
 };
 
-const organizationByidReducer = (state = initialState, action: any) => {
+const organizationByIDReducer = (state = initialState, action: any) => {
   switch (action.type) {
     case FETCH_ORGANIZATION_BYID:
       return (Object as any).assign({}, state, {
@@ -15,4 +15,4 @@ const organizationByidReducer = (state = initialState, action: any) => {
   }
 };
 
-export default organizationByidReducer;
+export default organizationByIDReducer;

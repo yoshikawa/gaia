@@ -4,7 +4,7 @@ const initialState = {
   item: {}
 };
 
-const userByidReducer = (state = initialState, action: any) => {
+const userByIDReducer = (state = initialState, action: any) => {
   switch (action.type) {
     case FETCH_USER_BYID:
       return (Object as any).assign({}, state, {
@@ -15,4 +15,4 @@ const userByidReducer = (state = initialState, action: any) => {
   }
 };
 
-export default userByidReducer;
+export default userByIDReducer;
