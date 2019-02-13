@@ -1,6 +1,6 @@
 import * as React from "react";
 import UserTile from "./UserTile";
-
+import Header from "../base/Header";
 export interface Props {
   fetchUser: () => any;
   user: any;
@@ -25,6 +25,7 @@ class UserHome extends React.Component<Props> {
 
     return (
       <div className="container">
+        <Header title="gaia" />
         <div className="tiles-container">
           <div className="user-menu">
             <h3>User list</h3>

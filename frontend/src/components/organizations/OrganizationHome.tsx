@@ -1,6 +1,6 @@
 import * as React from "react";
 import OrganizationTile from "./OrganizationTile";
-
+import Header from "../base/Header";
 export interface Props {
   fetchOrganization: () => any;
   organization: any;
@@ -21,6 +21,7 @@ class OrganizationHome extends React.Component<Props> {
 
     return (
       <div className="container">
+        <Header title="gaia" />
         <div className="tiles-container">
           <div className="organization-menu">
             <h3>Organization list</h3>

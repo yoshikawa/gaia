@@ -7,6 +7,8 @@ import UserContainer from "../container/users/allUserContainer";
 import UserDescriptionContainer from "../container/users/descriptionContainer";
 import OrganizationContainer from "../container/organizations/allOrganizationContainer";
 import OrganizationDescriptionContainer from "../container/organizations/descriptionContainer";
+import ObservationPositionsContainer from "../container/observation-positions/allObservationPositionContainer";
+import ObservationPositionsDescriptionContainer from "../container/observation-positions/descriptionContainer";
 
 export default class Routes extends Component {
   render() {
@@ -31,6 +33,16 @@ export default class Routes extends Component {
                   path="/organizations/:id"
                   exact
                   component={OrganizationDescriptionContainer}
+                />
+                <Route
+                  path="/observation-positions"
+                  exact
+                  component={ObservationPositionsContainer}
+                />
+                <Route
+                  path="/observation-positions/:id"
+                  exact
+                  component={ObservationPositionsDescriptionContainer}
                 />
               </Switch>
             </div>

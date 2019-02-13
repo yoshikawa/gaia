@@ -1,5 +1,6 @@
 import * as React from "react";
 import { withRouter, RouteComponentProps } from "react-router-dom";
+import Header from "../base/Header";
 
 export interface Props extends RouteComponentProps<any> {
   fetchUserByID: (id: number) => any;
@@ -25,6 +26,7 @@ class UserContent extends React.Component<Props> {
     const userData = this.props.userByID.item || [];
     return (
       <div className="user-content">
+        <Header title="gaia" />
         <div className="user-header">
           <h2>{userData.id}</h2>
           <h4>name : {userData.name}</h4>

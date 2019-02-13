@@ -1,5 +1,6 @@
 import * as React from "react";
 import ObservationPositionTile from "./ObservationPositionTile";
+import Header from "../base/Header";
 
 export interface Props {
   fetchObservationPosition: () => any;
@@ -24,6 +25,7 @@ class ObservationPositionHome extends React.Component<Props> {
 
     return (
       <div className="container">
+        <Header title="gaia" />
         <div className="tiles-container">
           <div className="observationPosition-menu">
             <h3>ObservationPosition list</h3>

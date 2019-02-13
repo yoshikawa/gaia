@@ -1,5 +1,6 @@
 import * as React from "react";
 import { withRouter, RouteComponentProps } from "react-router-dom";
+import Header from "../base/Header";
 
 export interface Props extends RouteComponentProps<any> {
   fetchObservationPositionByID: (id: number) => any;
@@ -27,6 +28,7 @@ class ObservationPositionContent extends React.Component<Props> {
 
     return (
       <div className="observationPosition-content">
+        <Header title="gaia" />
         <div className="observationPosition-header">
           <h2>{observationPositionsData.name}</h2>
           <div className="under-line" />
