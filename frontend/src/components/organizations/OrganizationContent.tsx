@@ -1,5 +1,6 @@
 import * as React from "react";
 import { withRouter, RouteComponentProps } from "react-router-dom";
+import Header from "../base/Header";
 
 export interface Props extends RouteComponentProps<any> {
   fetchOrganizationByID: (id: number) => any;
@@ -26,6 +27,7 @@ class OrganizationContent extends React.Component<Props> {
 
     return (
       <div className="organization-content">
+        <Header title="gaia" />
         <div className="organization-header">
           <h2>{organizationData.name}</h2>
           <div className="under-line" />

@@ -1,5 +1,5 @@
 import * as React from "react";
-import { NavLink, withRouter, RouteComponentProps } from "react-router-dom";
+import { Link } from "react-router-dom";
 // import * as PropTypes from 'prop-types';
 
 interface HeaderProps {
@@ -14,7 +14,7 @@ export default class Header extends React.Component<HeaderProps> {
           <ul className="title-name">
             <li className="name">
               <h1>
-                <a href="/">{this.props.title}</a>
+                <Link to="/">{this.props.title}</Link>
               </h1>
             </li>
           </ul>

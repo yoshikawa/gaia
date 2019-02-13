@@ -44,17 +44,13 @@
   },
   "dependencies": {
     "@material-ui/core": "^3.9.2",
-    "@types/axios": "^0.14.0",
     "@types/prop-types": "^15.5.8",
     "@types/react-router-dom": "^4.3.1",
     "@types/react-router-redux": "^5.0.17",
     "@types/redux-actions": "^2.3.1",
     "@types/redux-thunk": "^2.1.0",
-    "axios": "^0.18.0",
     "react-router-dom": "^4.3.1",
     "react-router-redux": "^4.0.8",
-    "redux-actions": "^2.6.4",
-    "redux-saga": "^1.0.1",
     "redux-thunk": "^2.3.0"
   }
 }
