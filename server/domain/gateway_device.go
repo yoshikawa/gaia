@@ -12,7 +12,7 @@ type GatewayDevice struct {
 	Name                 string    `json:"name" db:"name"`
 	TransmissionDistance int16     `json:"transmission_distance" db:"transmission_distance"`
 	AuthenticationName   string    `json:"authentication_name" db:"authentication_name"`
-	Password             string    `json:"password" db:"password"`
+	Password             string    `json:"-" db:"password"`
 	CreatedAt            time.Time `json:"created_at" db:"created_at"`
 	UpdatedAt            time.Time `json:"updated_at" db:"updated_at"`
 }
