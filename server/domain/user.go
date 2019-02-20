@@ -8,7 +8,7 @@ type User struct {
 	OrganizationID int64     `json:"organization_id" db:"organization_id"`
 	Name           string    `json:"name" db:"name"`
 	Email          string    `json:"email" db:"email"`
-	Password       string    `json:"password" db:"password"`
+	Password       string    `json:"-" db:"password"`
 	Country        string    `json:"country" db:"country"`
 	Administrator  bool      `json:"administrator" db:"administrator"`
 	CreatedAt      time.Time `json:"created_at" db:"created_at"`
