@@ -41,6 +41,9 @@ db/bash:
 api/init:
 	docker-compose exec api dep ensure
 
+api/upgrade:
+	docker-compose exec api dep ensure -update
+
 npm/install:
 	docker-compose exec react npm install
 
