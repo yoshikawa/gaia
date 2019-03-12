@@ -41,6 +41,8 @@ brew cask install docker
 git clone git@github.com:Pluslab/gaia.git
 ```
 
+**Makefileに全てが書いています**
+
 ### develop backend(バックエンドの開発)
 
 1. make docker/start
