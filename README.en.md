@@ -33,19 +33,15 @@ git clone git@github.com:Pluslab/gaia.git
 
 ### develop backend
 
-1. make docker/start
-2. make api/init
-3. make migrate/init
-4. make migrate/up
-5. make run
+1. make
+2. make run
 
 access `localhost:8080`
 
 ### develop frontend
 
-1. make docker/start
-2. make npm/install
-3. make npm/start
+1. make front
+2. make npm/watch
 
 access `localhost:8081`
 
