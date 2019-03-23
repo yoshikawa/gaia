@@ -62,4 +62,4 @@ access `localhost:8081`
 
 ## Author(著者)
 
-[Yoshikawa Taiki](https://github.com/yoshikawataiki)
+[Yoshikawa Taiki](https://github.com/yoshikawa)

@@ -57,4 +57,4 @@ This project needs to keep expanding constantly.
 
 ## Author
 
-[Yoshikawa Taiki](https://github.com/yoshikawataiki)
+[Yoshikawa Taiki](https://github.com/yoshikawa)
