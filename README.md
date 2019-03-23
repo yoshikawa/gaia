@@ -16,16 +16,6 @@ HTTPプロトコルを用いたREST API
 
 ## Requirements(必要条件)
 
-このリポジトリを開発する時には,Dockerという仮想環境を用意します.
-
-Homebrewが入ってるのであれば,以下のコマンドを実行
-
-```sh
-brew cask install docker
-```
-
-**Golang, React, MySQLはDockerコンテナ内にビルドされます**
-
 | 言語/FW        | Version |
 | :------------- | ------: |
 | go             |  1.11.5 |
@@ -41,21 +31,24 @@ brew cask install docker
 git clone git@github.com:Pluslab/gaia.git
 ```
 
-**Makefileに全てが書いています**
+**Makefileに全てを書いています**
+
+`make help` または `less Makefile` で読んでみましょう.
 
 ### develop backend(バックエンドの開発)
 
-1. make docker/start
-2. make api/init
-3. make migrate/init
-4. make migrate/up
-5. make run
+1. make
+2. make run
+
+access `localhost:8080`
 
 ### develop frontend(フロントエンドの開発)
 
-1. make docker/start
+1. make docker/up
 2. make npm/install
-3. make npm/start
+3. make npm/watch
+
+access `localhost:8081`
 
 ## Architecture(アーキテクチャ設計)
 
@@ -69,4 +62,4 @@ git clone git@github.com:Pluslab/gaia.git
 
 ## Author(著者)
 
-[Yoshikawa Taiki](https://github.com/yoshikawataiki)
+[Yoshikawa Taiki](https://github.com/yoshikawa)
