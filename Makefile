@@ -14,16 +14,17 @@ COMPOSESTOP=$(COMPOSE) stop
 COMPOSERM=$(COMPOSE) rm
 DBNAME:=fieldsensing
 TESTDBNAME:=test_fieldsensing
+MYSQL:=mysql --defaults-extra-file=./docker/mysql/my.cnf -h localhost --protocol tcp
 
 all: docker/up dep migrate/init migrate/up ## docker up & dep ensure & migrate
 
 front: docker/up npm/install ## docker up & npm install
 
 migrate/init: ## migrate init
-	mysql -u root -h localhost --protocol tcp -e "create database \`$(DBNAME)\`" -p
+	$(MYSQL) -e "create database \`$(DBNAME)\`"
 
 migrate/test-init: ## migrate test database init
-	mysql -u root -h localhost --protocol tcp -e "create database \`$(TESTDBNAME)\`" -p
+	$(MYSQL) -e "create database \`$(TESTDBNAME)\`"
 
 migrate/up: ## migrate up
 	$(COMPOSEEXEC) api goose up
@@ -74,7 +75,7 @@ run: ## go run main.go
 	$(COMPOSEEXEC) api $(GORUN) main.go
 
 test: ## go test
-	$(COMPOSEEXEC) api $(GOTEST) ./...
+	$(COMPOSEEXEC) api $(GOTEST) -v ./...
 
 doc: ## godoc http:6060
 	$(GODOC) -http=:6060
