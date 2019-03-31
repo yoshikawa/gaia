@@ -46,7 +46,7 @@ func (repo *SensorRepository) Store(sensor domain.Sensor) (id int64, err error) 
 
 // FindByID find the sensor by id
 func (repo *SensorRepository) FindByID(identifier int64) (sensor domain.Sensor, err error) {
-	row, err := repo.Query("SELECT * FROM sensors WHERE id = ?", identifier)
+	row, err := repo.Query("SELECT * FROM sensors WHERE id = ? LIMIT 1", identifier)
 	defer row.Close()
 	if err != nil {
 		return

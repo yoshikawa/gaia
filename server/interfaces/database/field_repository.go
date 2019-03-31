@@ -29,7 +29,7 @@ func (repo *FieldRepository) Store(f domain.Field) (id int64, err error) {
 
 // FindByID find the field by id
 func (repo *FieldRepository) FindByID(identifier int64) (field domain.Field, err error) {
-	row, err := repo.Query("SELECT id, organization_id, name, area, created_at, updated_at, deleted FROM fields WHERE id = ?", identifier)
+	row, err := repo.Query("SELECT id, organization_id, name, area, created_at, updated_at, deleted FROM fields WHERE id = ? LIMIT 1", identifier)
 	defer row.Close()
 	if err != nil {
 		return

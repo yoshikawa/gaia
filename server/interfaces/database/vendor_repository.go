@@ -58,7 +58,7 @@ func (repo *VendorRepository) Store(vendor domain.Vendor) (id int64, err error) 
 
 // FindByID find the vendor by id
 func (repo *VendorRepository) FindByID(identifier int64) (vendor domain.Vendor, err error) {
-	row, err := repo.Query("SELECT * FROM vendors WHERE id = ?", identifier)
+	row, err := repo.Query("SELECT * FROM vendors WHERE id = ? LIMIT 1", identifier)
 	defer row.Close()
 	if err != nil {
 		return

@@ -32,7 +32,7 @@ func (repo *GatewayDeviceRepository) Store(gatewayDevice domain.GatewayDevice) (
 
 // FindByID find the gateway device by id
 func (repo *GatewayDeviceRepository) FindByID(identifier int64) (gatewayDevice domain.GatewayDevice, err error) {
-	row, err := repo.Query("SELECT vendor_id, device_type, serial_number, point, name, transmission_distance, authentication_name, password FROM gateway_devices WHERE id = ?", identifier)
+	row, err := repo.Query("SELECT vendor_id, device_type, serial_number, point, name, transmission_distance, authentication_name, password FROM gateway_devices WHERE id = ? LIMIT 1", identifier)
 	defer row.Close()
 	if err != nil {
 		return

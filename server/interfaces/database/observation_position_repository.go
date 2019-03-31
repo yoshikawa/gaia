@@ -45,7 +45,7 @@ func (repo *ObservationPositionRepository) Store(op domain.ObservationPosition) 
 
 // FindByID find the observation position by id
 func (repo *ObservationPositionRepository) FindByID(identifier int64) (op domain.ObservationPosition, err error) {
-	row, err := repo.Query("SELECT * FROM observation_positions WHERE id = ?", identifier)
+	row, err := repo.Query("SELECT * FROM observation_positions WHERE id = ? LIMIT 1", identifier)
 	defer row.Close()
 	if err != nil {
 		return

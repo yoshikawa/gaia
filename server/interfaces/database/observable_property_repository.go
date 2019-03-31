@@ -55,7 +55,7 @@ func (repo *ObservablePropertyRepository) Store(observableProperty domain.Observ
 
 // FindByID find the observable property by id
 func (repo *ObservablePropertyRepository) FindByID(identifier int64) (observableProperty domain.ObservableProperty, err error) {
-	row, err := repo.Query("SELECT * FROM observable_properties WHERE id = ?", identifier)
+	row, err := repo.Query("SELECT * FROM observable_properties WHERE id = ? LIMIT 1", identifier)
 	defer row.Close()
 	if err != nil {
 		return

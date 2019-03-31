@@ -29,7 +29,7 @@ func (repo *OrganizationRepository) Store(o domain.Organization) (id int64, err 
 
 // FindByID find the organization by id
 func (repo *OrganizationRepository) FindByID(identifier int64) (organization domain.Organization, err error) {
-	row, err := repo.Query("SELECT * FROM organizations WHERE id = ?", identifier)
+	row, err := repo.Query("SELECT * FROM organizations WHERE id = ? LIMIT 1", identifier)
 	defer row.Close()
 	if err != nil {
 		return
