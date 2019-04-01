@@ -43,7 +43,7 @@ func (repo *SensingDeviceStatusRepository) Store(sensingDeviceStatus domain.Sens
 
 // FindByID find the sensing device status by id
 func (repo *SensingDeviceStatusRepository) FindByID(identifier int64) (sensingDeviceStatus domain.SensingDeviceStatus, err error) {
-	row, err := repo.Query("SELECT * FROM sensing_device_status WHERE id = ?", identifier)
+	row, err := repo.Query("SELECT * FROM sensing_device_status WHERE id = ? LIMIT 1", identifier)
 	defer row.Close()
 	if err != nil {
 		return

@@ -1,8 +1,6 @@
 package controller
 
 import (
-	"fmt"
-
 	"github.com/Pluslab/gaia/server/domain"
 	"github.com/Pluslab/gaia/server/interfaces/database"
 	"github.com/Pluslab/gaia/server/usecase"
@@ -31,18 +29,6 @@ func NewSessionController(SQLHandler database.SQLHandler) *SessionController {
 func (controller *SessionController) Login(c *gin.Context) {
 	u := domain.User{}
 	c.Bind(&u)
-	if u.Email == "" || u.Password == "" {
-		c.JSON(401, fmt.Errorf("Error: Please input Email and Password"))
-		return
-	}
-	if u.Email == "" {
-		c.JSON(401, fmt.Errorf("Error: Please input Email"))
-		return
-	}
-	if u.Password == "" {
-		c.JSON(401, fmt.Errorf("Error: Please input Password"))
-		return
-	}
 	user, err := controller.Interactor.Login(u.Email)
 	if err != nil {
 		c.JSON(500, err)

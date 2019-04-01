@@ -30,7 +30,7 @@ func (repo *GatewayDeviceStatusRepository) Store(gatewayDeviceStatus domain.Gate
 
 // FindByID find the gateway device by id
 func (repo *GatewayDeviceStatusRepository) FindByID(identifier int64) (gatewayDeviceStatus domain.GatewayDeviceStatus, err error) {
-	row, err := repo.Query("SELECT gateway_device_id, battery, status, datetime FROM gateway_device_status WHERE id = ?", identifier)
+	row, err := repo.Query("SELECT gateway_device_id, battery, status, datetime FROM gateway_device_status WHERE id = ? LIMIT 1", identifier)
 	defer row.Close()
 	if err != nil {
 		return

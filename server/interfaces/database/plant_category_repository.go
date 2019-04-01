@@ -49,7 +49,7 @@ func (repo *PlantCategoryRepository) Store(plantCategory domain.PlantCategory) (
 
 // FindByID find the plant category by id
 func (repo *PlantCategoryRepository) FindByID(identifier int64) (plantCategory domain.PlantCategory, err error) {
-	row, err := repo.Query("SELECT * FROM plant_categories WHERE id = ?", identifier)
+	row, err := repo.Query("SELECT * FROM plant_categories WHERE id = ? LIMIT 1", identifier)
 	defer row.Close()
 	if err != nil {
 		return

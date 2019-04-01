@@ -20,14 +20,16 @@ DBNAME:=fieldsensing
 TESTDBNAME:=test_fieldsensing
 MYSQL:=mysql --defaults-extra-file=/home/access.cnf
 
-all: docker/up dep migrate/init migrate/up ## docker up & dep ensure & migrate
+all: docker/up migrate/init migrate/up ## docker up & migrate
 
 front: docker/up npm/install ## docker up & npm install
 
 migrate/init: ## migrate init
+	$(DB) /home/wait.sh
 	$(DB) $(MYSQL) -e "create database if not exists \`$(DBNAME)\`"
 
 migrate/test-init: ## migrate test database init
+	$(DB) /home/wait.sh
 	$(DB) $(MYSQL) -e "create database if not exists \`$(TESTDBNAME)\`"
 
 migrate/up: ## migrate up
@@ -62,12 +64,6 @@ react/bash: ## react container bash
 
 db/bash: ## db(MySQL) container bash
 	$(DB) bash
-
-dep: ## dep ensure
-	$(API) dep ensure
-
-dep/update: ## dep ensure update
-	$(API) dep ensure -update
 
 npm/install: ## npm install
 	$(REACT) npm install

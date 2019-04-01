@@ -2,11 +2,11 @@ FROM golang:latest
 
 # Set go bin which doesn't appear to be set already.
 ENV GOPATH=/go \
-        GOBIN=/go/bin
+        GOBIN=/go/bin \
+        GO111MODULE=on
 
 # build directories
-ADD . $GOPATH/src/github.com/Pluslab/gaia
+ADD ./server $GOPATH/src/github.com/Pluslab/gaia/server
 WORKDIR /go/src/github.com/Pluslab/gaia/server
 
-RUN go get bitbucket.org/liamstask/goose/cmd/goose  && \
-        go get -u github.com/golang/dep/cmd/dep
+RUN go get bitbucket.org/liamstask/goose/cmd/goose

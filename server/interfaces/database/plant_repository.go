@@ -37,7 +37,7 @@ func (repo *PlantRepository) Store(plant domain.Plant) (id int64, err error) {
 
 // FindByID find the plant by id
 func (repo *PlantRepository) FindByID(identifier int64) (plant domain.Plant, err error) {
-	row, err := repo.Query(`SELECT * FROM fields WHERE id = ?`, identifier)
+	row, err := repo.Query(`SELECT * FROM fields WHERE id = ? LIMIT 1`, identifier)
 	defer row.Close()
 	if err != nil {
 		return

@@ -7,9 +7,11 @@ services:
       context: .
       dockerfile: ./docker/go/Dockerfile
     volumes:
-            - ./:/go/src/github.com/Pluslab/gaia:Z
+            - ./server:/go/src/github.com/Pluslab/gaia/server:Z
     ports:
       - 8080:8080
+    links:
+      - db
     tty:
       true
   react:
@@ -29,6 +31,7 @@ services:
     volumes:
       - ./docker/mysql/my.cnf:/etc/mysql/conf.d/my.cnf
       - ./docker/mysql/access.cnf:/home/access.cnf
+      - ./docker/mysql/wait.sh:/home/wait.sh
     restart: always
     command: --default-authentication-plugin=mysql_native_password
     environment:

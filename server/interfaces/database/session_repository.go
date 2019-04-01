@@ -11,7 +11,7 @@ type SessionRepository struct {
 
 // Login find the user by user email and password
 func (repo *SessionRepository) Login(inputEmail string) (user domain.User, err error) {
-	row, err := repo.Query("SELECT id, name, password FROM users WHERE email = ?", inputEmail)
+	row, err := repo.Query("SELECT id, name, password FROM users WHERE email = ? LIMIT 1", inputEmail)
 	defer row.Close()
 	if err != nil {
 		return

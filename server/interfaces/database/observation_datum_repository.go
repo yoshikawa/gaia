@@ -43,7 +43,7 @@ func (repo *ObservationDatumRepository) Store(od domain.ObservationDatum) (id in
 
 // FindByID find the observation datum by id
 func (repo *ObservationDatumRepository) FindByID(identifier int64) (od domain.ObservationDatum, err error) {
-	row, err := repo.Query(`SELECT * FROM observation_data WHERE id = ?`, identifier)
+	row, err := repo.Query(`SELECT * FROM observation_data WHERE id = ? LIMIT 1`, identifier)
 	defer row.Close()
 	if err != nil {
 		return

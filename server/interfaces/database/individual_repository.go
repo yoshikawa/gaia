@@ -101,7 +101,7 @@ func (repo *IndividualRepository) FindByID(identifier int64) (individual domain.
 			observation_timing_strict,
 			manufacturer,
 			location_name
-		FROM individuals WHERE id = ?`, identifier,
+		FROM individuals WHERE id = ? LIMIT 1`, identifier,
 	)
 	defer row.Close()
 	if err != nil {
