@@ -11,21 +11,22 @@ import (
 var (
 	// Port config
 	Port int
-	// DBHost config
-	DBHost string
-	// DBName config
-	DBName string
 	// DBUser config
 	DBUser string
 	// DBPassword config
 	DBPassword string
+	// DBProtocol config
+	DBProtocol string
+	// DBHost config
+	DBHost string
 	// DBPort config
-	DBPort int
-
-	// BasicAuthUsername config
-	BasicAuthUsername string
-	// BasicAuthPassword config
-	BasicAuthPassword string
+	DBPort string
+	// DBName config
+	DBName string
+	// DBCharset config
+	DBCharset string
+	// DBParseTime config
+	DBParseTime string
 )
 
 // Load function will load all config from environment variable
@@ -45,14 +46,12 @@ func Load() error {
 	if err != nil {
 		return err
 	}
-
 	Port = port
 
 	dbHost, ok := os.LookupEnv("DB_HOST")
 	if !ok {
 		return errors.New("DB_HOST env is not loaded")
 	}
-
 	// set DBHost
 	DBHost = dbHost
 
@@ -60,7 +59,6 @@ func Load() error {
 	if !ok {
 		return errors.New("DB_NAME env is not loaded")
 	}
-
 	// set DBName
 	DBName = dbName
 
@@ -68,7 +66,6 @@ func Load() error {
 	if !ok {
 		return errors.New("DB_USER env is not loaded")
 	}
-
 	// set DBUser
 	DBUser = dbUser
 
@@ -76,22 +73,36 @@ func Load() error {
 	if !ok {
 		return errors.New("DB_PASSWORD env is not loaded")
 	}
-
 	// set DBPassword
 	DBPassword = dbPassword
 
-	dbPortStr, ok := os.LookupEnv("DB_PORT")
+	dbPort, ok := os.LookupEnv("DB_PORT")
 	if !ok {
 		return errors.New("DB_PORT env is not loaded")
 	}
-
-	dbPort, err := strconv.Atoi(dbPortStr)
-	if err != nil {
-		return err
-	}
-
 	// set DBPort
 	DBPort = dbPort
+
+	dbCharset, ok := os.LookupEnv("DB_CHARSET")
+	if !ok {
+		return errors.New("DB_CHARSET env is not loaded")
+	}
+	// set DBCharset
+	DBCharset = dbCharset
+
+	dbProtocol, ok := os.LookupEnv("DB_PROTOCOL")
+	if !ok {
+		return errors.New("DB_PROTOCOL env is not loaded")
+	}
+	// set DBProtocol
+	DBProtocol = dbProtocol
+
+	dbParseTime, ok := os.LookupEnv("DB_PARSETIME")
+	if !ok {
+		return errors.New("DB_PARSETIME env is not loaded")
+	}
+	// set DBParseTime
+	DBParseTime = dbParseTime
 
 	return nil
 }
