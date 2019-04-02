@@ -1,18 +1,19 @@
 version: 2
 jobs:
   build:
-    docker:
-      - image: circleci/golang:latest
-
-      - image: circleci/mysql:8
-        command: mysqld --default_authentication_plugin=mysql_native_password --character-set-server=utf8mb4 --collation-server=utf8mb4_general_ci
-        environment:
-          MYSQL_DATABASE: fieldsensing
-          MYSQL_ROOT_PASSWORD: password
-
-    working_directory: /go/src/github.com/Pluslab/gaia
+    machine:
+      image: circleci/classic:edge
     steps:
       - checkout
-
-      - run: go get -v -t -d ./...
-      - run: go test -v ./...
+      - run:
+          name: docker-compose build
+          command: make docker/build
+      - run:
+          name: make all
+          command: make
+      - run:
+          name: make test
+          command: make test
+      - run:
+          name: docker-compose down
+          command: make docker/down

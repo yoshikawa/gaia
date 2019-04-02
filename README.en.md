@@ -53,7 +53,7 @@ This project needs to keep expanding constantly.
 
 ## Licence
 
-[MIT](https://github.com/Pluslab/gaia/blob/master/LICENSE)
+[MIT](/LICENSE)
 
 ## Author
 
