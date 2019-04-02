@@ -2,7 +2,8 @@ package domain
 
 import (
 	"errors"
-	"time"
+
+	"github.com/Pluslab/gaia/server/modules/shared"
 
 	"github.com/Pluslab/gaia/server/modules/organization/domain"
 )
@@ -12,13 +13,12 @@ type User struct {
 	ID             uint `gorm:"column:id; primary_key:yes"`
 	OrganizationID uint `gorm:"column:organization_id"`
 	Organization   domain.Organization
-	Name           string    `gorm:"column:name"`
-	Email          string    `gorm:"column:email; unique_index"`
-	Password       string    `gorm:"column:password; not null"`
-	Country        string    `gorm:"column:country"`
-	Administrator  bool      `gorm:"column:administrator"`
-	CreatedAt      time.Time `gorm:"column:created_at"`
-	UpdatedAt      time.Time `gorm:"column:updated_at"`
+	Name           string `gorm:"column:name"`
+	Email          string `gorm:"column:email; unique_index"`
+	Password       string `gorm:"column:password; not null"`
+	Country        string `gorm:"column:country"`
+	Administrator  bool   `gorm:"column:administrator"`
+	shared.BaseDomain
 }
 
 // Users type list of User

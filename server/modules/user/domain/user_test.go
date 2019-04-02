@@ -33,4 +33,18 @@ func TestUser(t *testing.T) {
 			t.Error("validate user should return error")
 		}
 	})
+
+	t.Run("should return error test validate user when field password empty", func(t *testing.T) {
+		user := &User{
+			Name:     "yoshikawataiki",
+			Email:    "yoshikawa@pluslab.org",
+			Password: "",
+		}
+
+		err := user.Validate()
+
+		if err == nil {
+			t.Error("validate user should return error")
+		}
+	})
 }
