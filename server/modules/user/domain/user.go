@@ -9,8 +9,8 @@ import (
 
 // User Model
 type User struct {
-	ID             int64 `gorm:"column:id; primary_key:yes"`
-	OrganizationID int64 `gorm:"column:organization_id"`
+	ID             uint `gorm:"column:id; primary_key:yes"`
+	OrganizationID uint `gorm:"column:organization_id"`
 	Organization   domain.Organization
 	Name           string    `gorm:"column:name"`
 	Email          string    `gorm:"column:email; unique_index"`

@@ -7,7 +7,7 @@ import (
 
 // Organization Model
 type Organization struct {
-	ID        int64     `gorm:"column:id; primary_key:yes"`
+	ID        uint      `gorm:"column:id; primary_key:yes"`
 	Name      string    `gorm:"column:name; not null"`
 	CreatedAt time.Time `gorm:"column:created_at"`
 	UpdatedAt time.Time `gorm:"column:updated_at"`
