@@ -8,5 +8,6 @@ require (
 	github.com/jinzhu/gorm v1.9.2
 	github.com/jinzhu/inflection v0.0.0-20180308033659-04140366298a // indirect
 	github.com/joho/godotenv v1.3.0
+	github.com/musobarlab/gorengan v0.0.0-20190401043449-1067be07eb0a
 	github.com/paulmach/orb v0.1.3
 )
