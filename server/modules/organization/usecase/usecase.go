@@ -5,11 +5,11 @@ import (
 	"github.com/Pluslab/gaia/server/modules/shared"
 )
 
-// ProductUsecase interface
-type ProductUsecase interface {
-	CreateProduct(*domain.Organization) shared.Output
-	GetProduct(uint) shared.Output
-	GetAllProduct(*shared.Parameters) shared.Output
-	GetTotalProduct(*shared.Parameters) shared.Output
-	RemoveProduct(uint) shared.Output
+// OrganizationUsecase interface
+type OrganizationUsecase interface {
+	CreateOrganization(*domain.Organization) shared.Output
+	GetOrganization(uint) shared.Output
+	GetAllOrganization(*shared.Parameters) shared.Output
+	GetTotalOrganization(*shared.Parameters) shared.Output
+	RemoveOrganization(uint) shared.Output
 }
