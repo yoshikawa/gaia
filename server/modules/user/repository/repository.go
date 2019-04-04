@@ -9,7 +9,7 @@ import (
 type UserRepository interface {
 	Save(*domain.User) shared.Output
 	Delete(*domain.User) shared.Output
-	FindByID(string) shared.Output
+	FindByID(uint) shared.Output
 	FindAll(*shared.Parameters) shared.Output
 	Count(*shared.Parameters) shared.Output
 }

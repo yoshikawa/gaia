@@ -25,3 +25,13 @@ func (r *UserRepositoryGorm) Save(user *domain.User) shared.Output {
 
 	return shared.Output{Result: user}
 }
+
+// Delete function
+func (r *UserRepositoryGorm) Delete(user *domain.User) shared.Output {
+	err := r.db.Delete(user).Error
+	if err != nil {
+		return shared.Output{Err: err}
+	}
+
+	return shared.Output{Result: user}
+}
