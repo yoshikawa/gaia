@@ -9,14 +9,14 @@ import (
 
 // UserSchemaInput strcut
 type UserSchemaInput struct {
-	ID            uint
-	Name          string
-	Email         string
-	Password      string
-	Country       string
-	Administrator bool
-	CreatedAt     *time.Time
-	UpdatedAt     *time.Time
+	OrganizationID uint
+	Name           string
+	Email          string
+	Password       string
+	Country        string
+	Administrator  bool
+	CreatedAt      *time.Time
+	UpdatedAt      *time.Time
 }
 
 // UserSchema resolver
@@ -24,9 +24,9 @@ type UserSchema struct {
 	User *domain.User
 }
 
-// ID function
-func (user *UserSchema) ID() graphql.ID {
-	return graphql.ID(user.User.ID)
+// OrganizationID function
+func (user *UserSchema) OrganizationID() graphql.ID {
+	return graphql.ID(user.User.OrganizationID)
 }
 
 // Name function
