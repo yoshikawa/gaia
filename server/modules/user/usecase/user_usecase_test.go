@@ -18,5 +18,4 @@ func TestUserUsecase(t *testing.T) {
 	// 		t.Errorf("create user should return nil")
 	// 	}
 	// })
-
 }

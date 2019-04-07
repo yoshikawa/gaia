@@ -19,6 +19,7 @@ func main() {
 	s, err := server.NewEchoServer(config.Port)
 	if err != nil {
 		fmt.Println("port not specified")
+		fmt.Println(err)
 		os.Exit(1)
 	}
 

@@ -1,5 +1,4 @@
 !.editorconfig
 .vscode/
-vendor/
 node_modules/
 dist/

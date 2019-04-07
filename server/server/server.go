@@ -5,12 +5,10 @@ import (
 	"net/http"
 
 	"github.com/Pluslab/gaia/server/database"
-	cd "github.com/Pluslab/gaia/server/modules/organization/delivery"
-	cr "github.com/Pluslab/gaia/server/modules/organization/repository"
-	cu "github.com/Pluslab/gaia/server/modules/organization/usecase"
-	pd "github.com/Pluslab/gaia/server/modules/user/delivery"
-	pr "github.com/Pluslab/gaia/server/modules/user/repository"
-	pu "github.com/Pluslab/gaia/server/modules/user/usecase"
+	od "github.com/Pluslab/gaia/server/modules/organization/delivery"
+	or "github.com/Pluslab/gaia/server/modules/organization/repository"
+	ou "github.com/Pluslab/gaia/server/modules/organization/usecase"
+	ud "github.com/Pluslab/gaia/server/modules/user/delivery"
 	"github.com/Pluslab/gaia/server/schema"
 	"github.com/graph-gophers/graphql-go"
 	"github.com/graph-gophers/graphql-go/relay"
@@ -20,8 +18,8 @@ import (
 
 // embedding all graphql resolver/ handler anonymously
 type graphqlHandlers struct {
-	pd.GraphQLUserHandler
-	cd.GraphQLOrganizationHandler
+	ud.GraphQLUserHandler
+	od.GraphQLOrganizationHandler
 }
 
 // EchoServer struct
@@ -46,21 +44,21 @@ func NewEchoServer(port int) (*EchoServer, error) {
 	}
 
 	// initial repository
-	userRepository := pr.NewUserRepositoryGorm(db)
-	organizationRepository := cr.NewOrganizationRepositoryGorm(db)
+	// userRepository := ur.NewUserRepositoryGorm(db)
+	organizationRepository := or.NewOrganizationRepositoryGorm(db)
 
 	// initial usecase
-	userUsecase := pu.NewUserUsecaseImpl(userRepository, userRepository, organizationRepository)
-	organizationUsecase := cu.NewOrganizationUsecaseImpl(organizationRepository, organizationRepository)
+	// userUsecase := uu.NewUserUsecaseImpl(userRepository, userRepository, organizationRepository)
+	organizationUsecase := ou.NewOrganizationUsecaseImpl(organizationRepository, organizationRepository)
 
 	// initial graphql handler/ resolver
-	userGraphQLHandler := pd.GraphQLUserHandler{UserUsecase: userUsecase}
-	organizationGraphQLHandler := cd.GraphQLOrganizationHandler{OrganizationUsecase: organizationUsecase}
+	// userGraphQLHandler := ud.GraphQLUserHandler{UserUsecase: userUsecase}
+	organizationGraphQLHandler := od.GraphQLOrganizationHandler{OrganizationUsecase: organizationUsecase}
 
 	// create graphql resolver
 	var graphqlResolver graphqlHandlers
 
-	graphqlResolver.GraphQLUserHandler = userGraphQLHandler
+	// graphqlResolver.GraphQLUserHandler = userGraphQLHandler
 	graphqlResolver.GraphQLOrganizationHandler = organizationGraphQLHandler
 
 	// parse grapqhql schema to code
@@ -80,7 +78,7 @@ func (s *EchoServer) Run() {
 	e.Use(echoMiddleware.Logger())
 
 	e.GET("/", func(c echo.Context) error {
-		return c.String(http.StatusOK, "Up and running !!")
+		return c.String(http.StatusOK, "Up and running!!")
 	})
 
 	// secure graphql route with Basic Auth
